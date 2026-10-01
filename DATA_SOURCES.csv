@@ -1,0 +1,17 @@
+chapters,data,kind,repository_location,source,units_and_scope
+CH01;CH03,mtcars,R datasets内置公开历史样本,CH01/data/mtcars.csv;CH03/data/mtcars.csv,https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html,32款汽车；mpg=英里/美制加仑，wt=1000磅；CH03转换为km/l和吨
+CH03,stock_data.csv,出版社提供的匿名A公司正文案例,CH03/data/stock_data.csv,出版社提供，无公开下载链接,2022-01-04至2023-06-30，共372行；12行价格缺失按正文线性插值，输出标记；rf年化百分数/100/365
+CH07,EuStockMarkets,R datasets内置公开历史样本,CH07/data/EuStockMarkets.csv,https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/EuStockMarkets.html,1991—1998；导出observation索引，不伪造逐行交易日期；DAX简单收益率乘100
+CH01,WDI/FRED/OECD/IMF,需显式联网的正文接口,CH01/R/manual/,https://data.worldbank.org/;https://fred.stlouisfed.org/;https://data-explorer.oecd.org/;https://data.imf.org/,不打包在线数据或密钥；指标、频率、起止日期由手动片段指定
+CH02;CH03;CH08;CH09;CH11;CH12,Yahoo行情,手动在线示例,R/manual/,https://finance.yahoo.com/,不打包行情；价格复权、日期与收益定义须按原始来源核对
+CH03;CH08,Ken French因子,手动在线示例,R/manual/,https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html,官方数据原值一般为百分数；合并频率、月份/日期和收益尺度按脚本处理
+CH10,FRED DGS收益率,手动在线示例,CH10/R/manual/,https://fred.stlouisfed.org/,DGS期限映射见脚本；原始年化百分数，模型函数使用小数；不预置下载
+CH12,German Credit,手动在线示例,CH12/R/manual/example_07.R,https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data,原UCI数据字段；遵循来源说明，仓库未打包下载
+CH04;CH05;CH06;CH09,本地行情输入,用户按schema提供,各章data/input_schema.csv,用户填写数据来源,仓库未提供原始行情，不以模拟冒充；data/user被Git忽略
+CH02;CH10,给定参数计算,确定性正文演示,results/reference/,本章R/body_demo.R,不是实证估计；CH02正文奖金约定，CH10给定参数NS曲线
+CH04,AR(2),SIMULATED,CH04/results/reference/,本章R/body_demo.R,"seed=123456；n=1000；AR系数0.6,-0.4"
+CH05,"GARCH(1,1)",SIMULATED,CH05/results/reference/,本章R/body_demo.R,"seed=123；n=1000；omega=.01,alpha=.05,beta=.9"
+CH08,简化等权SMB/HML,SIMULATED,CH08/results/reference/,本章R/body_demo.R,seed=123；100只股票、24期；t-1属性分组，t收益；非官方FF因子
+CH09,标准布朗运动,SIMULATED,CH09/results/reference/,本章R/body_demo.R,seed=123；1000步；终止时间1
+CH11,Pareto尾指数,SIMULATED,CH11/results/reference/,本章R/body_demo.R,seed=123；n=3000；alpha=3；Hill阈值敏感性
+CH12,树模型选股,SIMULATED,CH12/results/reference/,本章R/body_demo.R,seed=123；40股票42月；滚动训练24月；非真实投资回测

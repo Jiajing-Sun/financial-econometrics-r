@@ -1,0 +1,11 @@
+chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
+CH05,1,CH5-波动率模型.tex,151,ARCH模型,R/manual/example_01.R,parse_only_not_executed,,FinTS;ggplot2;rugarch,
+CH05,2,CH5-波动率模型.tex,211,ARCH模型,,excluded_console_transcript,,,
+CH05,3,CH5-波动率模型.tex,320,GARCH 模型,R/manual/example_03.R,parse_only_not_executed,,rugarch,
+CH05,4,CH5-波动率模型.tex,602,IGARCH 模型,R/manual/example_04.R,parse_only_not_executed,,,
+CH05,5,CH5-波动率模型.tex,729,ARCH、GARCH 模型的估计,R/manual/example_05.R,parse_only_not_executed,,MSwM;forecast;rugarch;zoo,
+CH05,6,CH5-波动率模型.tex,901,Box–Pierce 型混成检验,R/manual/example_06.R,parse_only_not_executed,,fUnitRoots;lmtest,
+CH05,7,CH5-波动率模型.tex,1059,案例：基于BEKK-GARCH的股指期现货的波动率研究,R/manual/example_07.R,parse_only_not_executed,,forecast;mgarchBEKK;readxl;vars,
+CH05,8,CH5-波动率模型.tex,1121,案例：基于BEKK-GARCH的股指期现货的波动率研究,,excluded_console_or_raw_data,,,
+CH05,9,CH5-波动率模型.tex,1242,案例：基于 DCC–GARCH 模型的股指联动性分析,R/manual/example_09.R,parse_only_not_executed,,ggplot2;rmgarch;imputeTS,显式限定imputeTS::na_interpolation并声明依赖；原片段未加载此函数所属包
+CH05,10,CH5-波动率模型.tex,1330,章节总结,,excluded_console_or_raw_data,,,

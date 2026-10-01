@@ -1,0 +1,4 @@
+file,field,type,meaning_or_unit
+prediction_panel.csv,"date,id",date/string,事前特征日期与证券标识
+prediction_panel.csv,features,numeric,预测时点已知特征
+prediction_panel.csv,ret_fwd,numeric,下一期收益，仅作为标签，不进入同期特征

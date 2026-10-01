@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+China_GDP.csv,Year,integer,年份
+China_GDP.csv,GDP,numeric,按来源注明币种/现价或不变价

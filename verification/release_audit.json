@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "scope": "正文代码与正文数据；用户数据和当前运行目录按.gitignore排除",
+  "checked_categories": [
+    "本机绝对路径",
+    "常见凭据格式",
+    "题解/提示文件名",
+    "禁止发布的文稿与归档文件"
+  ],
+  "findings": [],
+  "R_syntax_files": 174,
+  "manual_body_files": 147,
+  "chapters": 12,
+  "offline_entry_exit_zero": 12,
+  "empirical_exception": "CH06仅数据接口核验",
+  "reference_outputs": 61,
+  "reference_is_body_only": true
+}

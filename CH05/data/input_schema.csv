@@ -1,0 +1,9 @@
+file,field,type,meaning_or_unit
+sse.csv,Date,YYYY-MM-DD,交易日
+sse.csv,SSE,positive numeric,上证指数收盘指数
+stock_indices.csv,weekdays,string,英文星期；正文剔除Saturday和Sunday
+stock_indices.csv,Dow_Jones_Index_Industrial_Average,positive numeric,道琼斯工业平均指数
+stock_indices.csv,S.P.TSX_Composite_Index,positive numeric,S&P/TSX综合指数；read.csv默认make.names后的列名
+沪深300股指期现货收盘价.xlsx,日期,date,交易日
+沪深300股指期现货收盘价.xlsx,沪深300股指收盘价,positive numeric,现货指数收盘价
+沪深300股指期现货收盘价.xlsx,沪深300股指期货当月收盘价,positive numeric,当月期货收盘价；合约滚动规则需注明

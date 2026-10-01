@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+Moutai.csv,date,YYYY-MM-DD,交易日
+Moutai.csv,close,positive numeric,复权收盘价

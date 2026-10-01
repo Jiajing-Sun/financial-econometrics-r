@@ -1,0 +1,4 @@
+file,field,type,meaning_or_unit
+factor_inputs.csv,"date,id",date/string,日期与股票标识
+factor_inputs.csv,"lag_market_value,lag_PB",numeric,收益发生前可得属性
+factor_inputs.csv,return,numeric,对应持有期简单收益，小数

@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+EuStockMarkets.csv,observation,integer,观测索引
+EuStockMarkets.csv,"DAX,SMI,CAC,FTSE",numeric,原始指数水平

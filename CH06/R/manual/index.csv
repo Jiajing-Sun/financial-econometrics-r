@@ -1,0 +1,4 @@
+chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
+CH06,1,CH6-收益可预测性与有效市场假说.tex,538,案例：2023 年中国股市的弱式有效性检验——以贵州茅台为例,R/manual/example_01.R,parse_only_not_executed,,ggplot2;tseries;vrtest,
+CH06,2,CH6-收益可预测性与有效市场假说.tex,582,案例：2023 年中国股市的弱式有效性检验——以贵州茅台为例,,excluded_console_transcript,,,
+CH06,3,CH6-收益可预测性与有效市场假说.tex,616,案例：2023 年中国股市的弱式有效性检验——以贵州茅台为例,,excluded_console_transcript,,,

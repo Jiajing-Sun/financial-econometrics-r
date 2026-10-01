@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+AA_daily20120103.xlsx,column 5,positive numeric,原始无表头高频数据的第5列成交价；正文读取为...5；必须按时间排序
+AA_daily20120103.xlsx,other columns,supplier specific,其余字段按原供应商记录；默认不提供或猜测原始数据

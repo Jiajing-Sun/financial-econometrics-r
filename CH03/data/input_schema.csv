@@ -1,0 +1,5 @@
+file,field,type,meaning_or_unit
+stock_data.csv,Date,YYYY-MM-DD,日期
+stock_data.csv,stock_price,numeric,A公司价格，允许正文原数据缺失
+stock_data.csv,market_index,numeric,市场指数水平
+stock_data.csv,risk_free_rate,numeric,年化百分数

@@ -1,0 +1,7 @@
+chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
+CH07,1,CH7-非参数方法.tex,91,非参数概率密度估计量,R/manual/example_01.R,parse_only_not_executed,,,
+CH07,2,CH7-非参数方法.tex,123,非参数概率密度估计量,R/manual/example_02.R,parse_only_not_executed,,dplyr;ggplot2;ragg;showtext;sysfonts,
+CH07,3,CH7-非参数方法.tex,235,非参数概率密度估计量,R/manual/example_03.R,parse_only_not_executed,,datasets;ggplot2,
+CH07,4,CH7-非参数方法.tex,602,多维核密度估计量,R/manual/example_04.R,parse_only_not_executed,,datasets;ks,
+CH07,5,CH7-非参数方法.tex,671,非参数回归模型,R/manual/example_05.R,parse_only_not_executed,,ggplot2;ggpubr,
+CH07,6,CH7-非参数方法.tex,775,Nadaraya-Watson估计量,R/manual/example_06.R,parse_only_not_executed,,KernSmooth;ggplot2;ragg;showtext;sysfonts,

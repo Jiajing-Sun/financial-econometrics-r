@@ -1,0 +1,13 @@
+chapter,exit_status,status,checks_passed,scope
+CH01,0,PASS_BODY_DEMO,3,默认离线正文演示；见scope.txt
+CH02,0,PASS_BODY_DEMO,2,默认离线正文演示；见scope.txt
+CH03,0,PASS_BODY_DEMO,2,默认离线正文演示；见scope.txt
+CH04,0,PASS_BODY_DEMO,2,默认离线正文演示；见scope.txt
+CH05,0,PASS_BODY_DEMO,3,默认离线正文演示；见scope.txt
+CH06,0,PASS_INTERFACE_ONLY,1,真实行情检验未运行
+CH07,0,PASS_BODY_DEMO,2,默认离线正文演示；见scope.txt
+CH08,0,PASS_BODY_DEMO,2,默认离线正文演示；见scope.txt
+CH09,0,PASS_BODY_DEMO,3,默认离线正文演示；见scope.txt
+CH10,0,PASS_BODY_DEMO,2,默认离线正文演示；见scope.txt
+CH11,0,PASS_BODY_DEMO,3,默认离线正文演示；见scope.txt
+CH12,0,PASS_BODY_DEMO,3,默认离线正文演示；见scope.txt

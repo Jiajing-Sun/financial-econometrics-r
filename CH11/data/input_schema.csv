@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+prices.csv,date,YYYY-MM-DD,交易日
+prices.csv,adjusted_close,positive numeric,复权收盘价；损失定义需与代码一致

@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+market_data.csv,date,YYYY-MM-DD,行情日期
+market_data.csv,close,positive numeric,价格，注明复权及币种

@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+fred_yields.csv,date,YYYY-MM-DD,共同观测日
+fred_yields.csv,"DGS3MO,DGS6MO,DGS1,...",numeric,原始年化百分数，保留期限映射

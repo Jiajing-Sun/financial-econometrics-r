@@ -1,0 +1,9 @@
+chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
+CH12,1,CH12-金融计量经济学与人工智能方法.tex,193,示例（量化／风控）,R/manual/example_01.R,parse_only_not_executed,,dplyr;ggplot2;pROC;rpart;rpart.plot;stats;tidyr,
+CH12,2,CH12-金融计量经济学与人工智能方法.tex,284,示例（量化／风控）,R/manual/example_02.R,parse_only_not_executed,,ISLR;dplyr;ggplot2;pROC;rpart;rpart.plot,
+CH12,3,CH12-金融计量经济学与人工智能方法.tex,537,案例：随机森林 vs 逻辑回归（固定窗口，滚动样本外预测）,R/manual/example_03.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,dplyr;pROC;tidyr,
+CH12,4,CH12-金融计量经济学与人工智能方法.tex,772,代码说明：XGBoost（固定区间，滚动样本外，早停）,R/manual/example_04.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,dplyr;pROC;tidyr,
+CH12,5,CH12-金融计量经济学与人工智能方法.tex,1352,收益率预测：线性回归 vs. XGBoost 与 LSTM,R/manual/example_05.R,parse_only_not_executed,,dplyr,
+CH12,6,CH12-金融计量经济学与人工智能方法.tex,1399,波动率建模：GARCH vs. 注意力机制,R/manual/example_06.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,dplyr;keras;rugarch;tidyr;zoo,
+CH12,7,CH12-金融计量经济学与人工智能方法.tex,1698,信用评分：Logit vs. 随机森林 / 神经网络,R/manual/example_07.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,PRROC;caret;data.table;dplyr;nnet;pROC;ranger;utils,
+CH12,8,CH12-金融计量经济学与人工智能方法.tex,1933,因子提取与风险度量：自编码器与深度贝叶斯,R/manual/example_08.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,MASS;keras;stats;tidyr,

@@ -1,0 +1,4 @@
+NEEDS_USER_DATA
+正文案例需要用户提供date,close格式的复权收盘价。
+运行：Rscript CH06/run.R --data=CH06/data/user/Moutai.csv
+默认未运行或验证真实市场检验。

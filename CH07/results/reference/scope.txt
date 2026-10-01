@@ -1,0 +1,1 @@
+R datasets::EuStockMarkets的公开历史DAX样本（1991—1998）；不是最新行情。显式以前一期价格为分母，避免ts滞后索引歧义。

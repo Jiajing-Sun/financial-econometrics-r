@@ -1,0 +1,1 @@
+正文Hill函数的Pareto模拟演示（尾指数3，seed=123）。原正文SPY收益、GARCH和Copula实证代码见R/manual，需联网与额外包。未发布习题风险回测结果。

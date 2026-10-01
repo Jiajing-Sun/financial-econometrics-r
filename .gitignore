@@ -1,0 +1,18 @@
+# Local data, credentials and generated outputs
+.DS_Store
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+.env
+.env.*
+*.key
+*.pem
+*.rds
+*.RDS
+__pycache__/
+**/data/user/*
+**/results/current/
+**/results/user/
+**/results/manual/
+Rplots.pdf

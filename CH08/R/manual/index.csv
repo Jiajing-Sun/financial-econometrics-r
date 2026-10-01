@@ -1,0 +1,6 @@
+chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
+CH08,1,CH8-金融资产定价模型.tex,568,案例：Fama-French三因子模型,R/manual/example_01.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,PerformanceAnalytics;frenchdata;quantmod;scales;tidyverse,
+CH08,2,CH8-金融资产定价模型.tex,664,案例：Fama-French三因子模型,,excluded_console_or_raw_data,,,
+CH08,3,CH8-金融资产定价模型.tex,737,SMB/HML/UMD 的基本构建思路（实践口径可按研究设计微调）,R/manual/example_03.R,parse_only_not_executed,,,
+CH08,4,CH8-金融资产定价模型.tex,790,SMB/HML/UMD 的基本构建思路（实践口径可按研究设计微调）,R/manual/example_04.R,parse_only_not_executed,,,
+CH08,5,CH8-金融资产定价模型.tex,858,SMB/HML/UMD 的基本构建思路（实践口径可按研究设计微调）,R/manual/example_05.R,parse_only_not_executed,,,

@@ -1,0 +1,3 @@
+file,field,type,meaning_or_unit
+sse.csv,Date,YYYY-MM-DD,交易日
+sse.csv,SSE,positive numeric,上证指数收盘指数；正文使用SSE列
