@@ -1,11 +1,12 @@
-# 正文来源：CH4-自回归移动平均模型.tex，代码块 1；正文第 178 行。
-# 最新SVAR部分采用已识别AB限制；全章片段仅手动执行，见manual/index.csv。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH4-自回归移动平均模型.tex，代码块 1；修订稿第 178 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 library(ggplot2)
 
 library(ragg)
 
-invisible(NULL)
+if (requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
+}
 
 set.seed(1386)
 
@@ -34,23 +35,25 @@ for (i in 1:N) {
     random_walks[i, ] <- cumsum(epsilon)
 }
 
-multi_df <- data.frame(time = rep(seq_len(T), times = N), path = factor(rep(seq_len(N), each = T)), value = as.vector(t(random_walks)))
+multi_df <- data.frame(time = rep(seq_len(T), times = N), path = factor(rep(seq_len(N), each = T)),
+    value = as.vector(t(random_walks)))
 
 theme_book <- function() {
-    theme_bw(base_size = 18, base_family = "Arial Unicode MS") + theme(plot.title = element_blank(), panel.grid.minor = element_blank(), 
-        axis.title = element_text(size = 20), axis.text = element_text(size = 17, colour = "black"))
+    theme_bw(base_size = 18, base_family = "Arial Unicode MS") + theme(plot.title = element_blank(),
+        panel.grid.minor = element_blank(), axis.title = element_text(size = 20), axis.text = element_text(size = 17,
+            colour = "black"))
 }
 
-p_single <- ggplot(single_df, aes(x = time, y = value)) + geom_line(colour = "#1f77b4", linewidth = 0.7) + labs(x = "时间", 
-    y = "随机游走取值") + theme_book()
+p_single <- ggplot(single_df, aes(x = time, y = value)) + geom_line(colour = "#1f77b4", linewidth = 0.7) +
+    labs(x = "时间", y = "随机游走取值") + theme_book()
 
-ggsave("results/manual/single_realization.png", p_single, width = 6, height = 4, dpi = 300, device = ragg::agg_png)
+ggsave("single_realization.png", p_single, width = 6, height = 4, dpi = 300, device = ragg::agg_png)
 
-p_multi <- ggplot(multi_df, aes(x = time, y = value, group = path, colour = path)) + geom_line(linewidth = 0.35, 
-    alpha = 0.65, show.legend = FALSE) + scale_colour_manual(values = hcl.colors(N, palette = "Dark 3")) + labs(x = "时间", 
-    y = "随机游走取值") + theme_book()
+p_multi <- ggplot(multi_df, aes(x = time, y = value, group = path, colour = path)) + geom_line(linewidth = 0.35,
+    alpha = 0.65, show.legend = FALSE) + scale_colour_manual(values = hcl.colors(N, palette = "Dark 3")) +
+    labs(x = "时间", y = "随机游走取值") + theme_book()
 
-ggsave("results/manual/50_random_walks_plot.png", p_multi, width = 6, height = 4, dpi = 300, device = ragg::agg_png)
+ggsave("50_random_walks_plot.png", p_multi, width = 6, height = 4, dpi = 300, device = ragg::agg_png)
 
 ensemble_average_t100 <- mean(random_walks[, t_point])
 

@@ -1,45 +1,40 @@
-# 正文来源：CH5-波动率模型.tex，代码块 6；正文第 901 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-library(lmtest)
-
-library(fUnitRoots)
-
+# 正文来源：CH5-波动率模型.tex，代码块 6；修订稿第 903 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 set.seed(123)
 
-n <- 100
+y <- as.numeric(arima.sim(model = list(ar = 0.5), n = 100))
 
-Y <- arima.sim(model = list(ar = 0.5), n = n)
+fit <- lm(y[-1] ~ y[-length(y)])
 
-model <- lm(Y[2:n] ~ Y[1:(n - 1)])
+e2 <- residuals(fit)^2
 
-residuals <- model$residuals
+T_eff <- length(e2)
 
-p <- 1
+p <- 3L
 
-residuals_squared <- residuals^2
+stopifnot(p >= 1L, T_eff > p + 1L)
 
-auxiliary_model <- lm(residuals_squared[(p + 1):n] ~ residuals_squared[1:(n - p)])
+lagged <- embed(e2, p + 1L)
 
-lm_stat <- summary(auxiliary_model)$r.squared * (n - p)
+aux <- lm(lagged[, 1] ~ lagged[, -1, drop = FALSE])
 
-lm_stat
+LM <- nrow(lagged) * summary(aux)$r.squared
 
-sigma_hat_squared <- mean(residuals_squared)
+z <- e2 - mean(e2)
 
-demeaned_residuals_squared <- residuals_squared - sigma_hat_squared
+gamma0 <- sum(z^2)/T_eff
 
-gamma_hat_0 <- var(demeaned_residuals_squared)
+gammaj <- vapply(seq_len(p), function(j) {
+    sum(z[(j + 1L):T_eff] * z[seq_len(T_eff - j)])/T_eff
+}, numeric(1))
 
-p <- 1
+rho2 <- gammaj/gamma0
 
-gamma_hat_j <- sapply(1:p, function(j) mean(demeaned_residuals_squared[(j + 1):n] * demeaned_residuals_squared[1:(n - 
-    j)], na.rm = TRUE))
+Q_BP <- T_eff * sum(rho2^2)
 
-rho_hat <- gamma_hat_j/gamma_hat_0
+Q_LB <- T_eff * (T_eff + 2) * sum(rho2^2/(T_eff - seq_len(p)))
 
-ml_stat <- n * sum(rho_hat^2)
+c(LM = LM, Box_Pierce = Q_BP, Ljung_Box = Q_LB)
 
-ml_stat
+pchisq(c(LM, Q_BP, Q_LB), df = p, lower.tail = FALSE)

@@ -1,6 +1,6 @@
-# 正文来源：CH4-自回归移动平均模型.tex，代码块 21；正文第 3047 行。
-# 最新SVAR部分采用已识别AB限制；全章片段仅手动执行，见manual/index.csv。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH4-自回归移动平均模型.tex，代码块 21；修订稿第 3014 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 set.seed(123)
 
 stopifnot(requireNamespace("vars", quietly = TRUE))
@@ -59,5 +59,5 @@ print(fit_ab$Ase)
 
 print(fit_ab$Bse)
 
-stopifnot(all(diag(fit_ab$B) > 0), max(abs(fit_ab$A[upper.tri(fit_ab$A)])) < 1e-10, max(abs(fit_ab$B[row(fit_ab$B) != 
+stopifnot(all(diag(fit_ab$B) > 0), max(abs(fit_ab$A[upper.tri(fit_ab$A)])) < 1e-10, max(abs(fit_ab$B[row(fit_ab$B) !=
     col(fit_ab$B)])) < 1e-10)

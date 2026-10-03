@@ -1,7 +1,7 @@
-chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
-CH10,1,CH10-收益率曲线.tex,104,贴现函数、收益率曲线与远期利率,R/manual/example_01.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,quantmod;stats,
-CH10,2,CH10-收益率曲线.tex,265,基函数展开法,R/manual/example_02.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,quantmod;splines;stats,
-CH10,3,CH10-收益率曲线.tex,430,参数法,R/manual/example_03.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,quantmod;stats,
-CH10,4,CH10-收益率曲线.tex,619,Fama–Bliss 法,R/manual/example_04.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,quantmod,
-CH10,5,CH10-收益率曲线.tex,812,收益率的统计性质,R/manual/example_05.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,ggplot2;moments;quantmod;ragg;zoo,
-CH10,6,CH10-收益率曲线.tex,1141,多因子仿射期限结构,R/manual/example_06.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,ggplot2;moments;quantmod;ragg;zoo,
+"chapter","body_block","source_chapter","source_line_at_extraction","section","file","network_opt_in","packages_detected","note","status"
+"CH10",1,"CH10-收益率曲线.tex",105,"贴现函数、收益率曲线与远期利率","R/manual/example_01.R","FIN_ECON_ENABLE_NETWORK=1","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH10",2,"CH10-收益率曲线.tex",216,"基函数展开法","R/manual/example_02.R","FIN_ECON_ENABLE_NETWORK=1","quantmod;splines","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH10",3,"CH10-收益率曲线.tex",386,"参数法","R/manual/example_03.R","FIN_ECON_ENABLE_NETWORK=1","quantmod","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH10",4,"CH10-收益率曲线.tex",576,"Fama–Bliss 法","R/manual/example_04.R","FIN_ECON_ENABLE_NETWORK=1","quantmod","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH10",5,"CH10-收益率曲线.tex",772,"收益率的统计性质","R/manual/example_05.R","FIN_ECON_ENABLE_NETWORK=1","ggplot2;moments;quantmod;rstudioapi;zoo","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH10",6,"CH10-收益率曲线.tex",1101,"多因子仿射期限结构","R/manual/example_06.R","FIN_ECON_ENABLE_NETWORK=1","ggplot2;moments;quantmod;rstudioapi;zoo","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"

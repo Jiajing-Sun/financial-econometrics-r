@@ -1,5 +1,5 @@
-chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
-CH11,1,CH11-风险管理与极值理论.tex,400,尾厚度的估计,R/manual/example_01.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,zoo,
-CH11,2,CH11-风险管理与极值理论.tex,627,尾部厚度与动态风险度量：基于 S\&P 500 的实证与回测,R/manual/example_02.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,evir;zoo,
-CH11,3,CH11-风险管理与极值理论.tex,1094,多变量依赖与系统性风险：Copula 与 CoVaR 的实证演示,R/manual/example_03.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,VineCopula,
-CH11,4,CH11-风险管理与极值理论.tex,1368,期望损失（ES）：历史模拟法与条件 GARCH 模型的实证计算,R/manual/example_04.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,,
+"chapter","body_block","source_chapter","source_line_at_extraction","section","file","network_opt_in","packages_detected","note","status"
+"CH11",1,"CH11-风险管理与极值理论.tex",405,"尾厚度的估计","R/manual/example_01.R","FIN_ECON_ENABLE_NETWORK=1","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH11",2,"CH11-风险管理与极值理论.tex",640,"尾部厚度与动态风险度量：基于 S\&P 500 的实证与回测","R/manual/example_02.R","FIN_ECON_ENABLE_NETWORK=1","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH11",3,"CH11-风险管理与极值理论.tex",1117,"多变量依赖与系统性风险：Copula 与 CoVaR 的实证演示","R/manual/example_03.R","FIN_ECON_ENABLE_NETWORK=1","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH11",4,"CH11-风险管理与极值理论.tex",1396,"期望损失（ES）：历史模拟法与条件 GARCH 模型的实证计算","R/manual/example_04.R","FIN_ECON_ENABLE_NETWORK=1","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"

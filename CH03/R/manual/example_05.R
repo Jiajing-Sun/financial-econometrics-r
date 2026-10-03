@@ -1,9 +1,7 @@
-# 正文来源：CH3-回归模型及其应用.tex，代码块 5；正文第 994 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
+# 正文来源：CH3-回归模型及其应用.tex，代码块 5；修订稿第 685 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
 from_date <- "2005-01-01"
 
 to_date <- "2024-12-31"
@@ -61,21 +59,21 @@ print_lm_with_nw <- function(mod, lag = 6, title = "") {
     out <- cbind(Estimate = est, NW_Std.Err = se_nw, `t(NW)` = tval, `Pr(>|t|)` = pval)
     rownames(out) <- names(co)
     print(round(out, 6))
-    cat(sprintf("\nR-squared: %.3f   Adj R-squared: %.3f   RSE: %.4f   N: %d\n", s$r.squared, s$adj.r.squared, 
-        s$sigma, s$df[1] + s$df[2]))
+    cat(sprintf("\nR-squared: %.3f   Adj R-squared: %.3f   RSE: %.4f   N: %d\n", s$r.squared,
+        s$adj.r.squared, s$sigma, s$df[1] + s$df[2]))
 }
 
 fetch_yahoo_chart_monthly <- function(symbol, from_date, to_date) {
     p1 <- as.integer(as.POSIXct(as.Date(from_date), tz = "UTC"))
     p2 <- as.integer(as.POSIXct(as.Date(to_date), tz = "UTC"))
-    url <- paste0("https://query1.finance.yahoo.com/v8/finance/chart/", symbol, "?period1=", p1, "&period2=", p2, 
-        "&interval=1mo&events=div%2Csplit")
+    url <- paste0("https://query1.finance.yahoo.com/v8/finance/chart/", symbol, "?period1=",
+        p1, "&period2=", p2, "&interval=1mo&events=div%2Csplit")
     tf <- tempfile(fileext = ".json")
     utils::download.file(url, tf, quiet = TRUE, mode = "wb")
     js <- paste(readLines(tf, warn = FALSE), collapse = "")
     ts_pat <- "\"timestamp\"\\s*:\\s*\\[([^\\]]+)\\]"
     ts_m <- regexpr(ts_pat, js, perl = TRUE)
-    if (ts_m[1] == -1) 
+    if (ts_m[1] == -1)
         stop("未找到 timestamp 数组：可能是符号无数据或网络受限。")
     ts_txt <- regmatches(js, ts_m)
     ts_inside <- sub("^\"timestamp\"\\s*:\\s*\\[", "", sub("\\]$", "", ts_txt))
@@ -84,10 +82,11 @@ fetch_yahoo_chart_monthly <- function(symbol, from_date, to_date) {
     months <- as.Date(format(dates, "%Y-%m-01"))
     ac_pat <- "\"adjclose\"\\s*:\\s*\\[\\s*\\{\\s*\"adjclose\"\\s*:\\s*\\[([^\\]]+)\\]"
     ac_m <- regexpr(ac_pat, js, perl = TRUE)
-    if (ac_m[1] == -1) 
+    if (ac_m[1] == -1)
         stop("未找到 adjclose 数组：结构变化或无数据。")
     ac_txt <- regmatches(js, ac_m)
-    ac_inside <- sub("^\"adjclose\"\\s*:\\s*\\[\\s*\\{\\s*\"adjclose\"\\s*:\\s*\\[", "", sub("\\]$", "", ac_txt))
+    ac_inside <- sub("^\"adjclose\"\\s*:\\s*\\[\\s*\\{\\s*\"adjclose\"\\s*:\\s*\\[", "", sub("\\]$",
+        "", ac_txt))
     ac_inside <- gsub("null", "NA", ac_inside, fixed = TRUE)
     adj <- as.numeric(unlist(strsplit(ac_inside, ",")))
     n <- min(length(months), length(adj))
@@ -116,7 +115,8 @@ read_ff_zip_csv <- function(zip_url, inner_name_pattern, skip_lines) {
     lst <- utils::unzip(tf, list = TRUE)$Name
     target <- lst[grep(inner_name_pattern, lst, ignore.case = TRUE)][1]
     csv_path <- utils::unzip(tf, files = target, exdir = tempdir(), overwrite = TRUE)[1]
-    dat <- utils::read.csv(csv_path, skip = skip_lines, header = TRUE, check.names = FALSE, stringsAsFactors = FALSE)
+    dat <- utils::read.csv(csv_path, skip = skip_lines, header = TRUE, check.names = FALSE,
+        stringsAsFactors = FALSE)
     colnames(dat)[1] <- "Date"
     ok <- !is.na(suppressWarnings(as.integer(dat$Date)))
     dat <- dat[ok, , drop = FALSE]
@@ -127,9 +127,9 @@ ff5_url <- "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Rese
 
 ff5_raw <- read_ff_zip_csv(ff5_url, "F-F_Research_Data_5_Factors_2x3.CSV", skip_lines = 3)
 
-ff5 <- data.frame(month = as_ym01_from_YYYYMM(ff5_raw$Date), Mkt_RF = as.numeric(ff5_raw[["Mkt-RF"]]), SMB = as.numeric(ff5_raw[["SMB"]]), 
-    HML = as.numeric(ff5_raw[["HML"]]), RMW = as.numeric(ff5_raw[["RMW"]]), CMA = as.numeric(ff5_raw[["CMA"]]), 
-    RF = as.numeric(ff5_raw[["RF"]]), stringsAsFactors = FALSE)
+ff5 <- data.frame(month = as_ym01_from_YYYYMM(ff5_raw$Date), Mkt_RF = as.numeric(ff5_raw[["Mkt-RF"]]),
+    SMB = as.numeric(ff5_raw[["SMB"]]), HML = as.numeric(ff5_raw[["HML"]]), RMW = as.numeric(ff5_raw[["RMW"]]),
+    CMA = as.numeric(ff5_raw[["CMA"]]), RF = as.numeric(ff5_raw[["RF"]]), stringsAsFactors = FALSE)
 
 ff5 <- ff5[!is.na(ff5$month), ]
 
@@ -141,7 +141,8 @@ mom_url <- "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Mome
 
 mom_raw <- read_ff_zip_csv(mom_url, "F-F_Momentum_Factor.CSV", skip_lines = 13)
 
-mom <- data.frame(month = as_ym01_from_YYYYMM(mom_raw$Date), UMD = as.numeric(mom_raw[["Mom"]]), stringsAsFactors = FALSE)
+mom <- data.frame(month = as_ym01_from_YYYYMM(mom_raw$Date), UMD = as.numeric(mom_raw[["Mom"]]),
+    stringsAsFactors = FALSE)
 
 mom <- mom[!is.na(mom$month), ]
 

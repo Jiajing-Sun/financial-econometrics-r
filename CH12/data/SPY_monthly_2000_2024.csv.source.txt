@@ -1,0 +1,4 @@
+Yahoo Finance adjusted SPY month-end prices, fetched through quantmod. Historical 2000–2024 example; adjusted history may change.
+Source: https://finance.yahoo.com/quote/SPY/history/
+Downloaded: 2026-10-03
+SHA256: ad10b2018e46eb6ef5344e260dd149eda71c309eb29cccc2d585c378d8d15ff7

@@ -1,15 +1,13 @@
-# 正文来源：CH12-金融计量经济学与人工智能方法.tex，代码块 8；正文第 1933 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
+# 正文来源：CH12-金融计量经济学与人工智能方法.tex，代码块 8；修订稿第 1957 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
 start_date <- as.Date("2015-01-01")
 
 end_date <- as.Date("2024-12-31")
 
-tickers <- c("SPY", "QQQ", "IWM", "EFA", "EEM", "TLT", "IEF", "LQD", "HYG", "GLD", "SLV", "USO", "XLK", "XLF", 
-    "XLY", "XLP", "XLV", "XLI", "XLE", "XLU", "XLB")
+tickers <- c("SPY", "QQQ", "IWM", "EFA", "EEM", "TLT", "IEF", "LQD", "HYG", "GLD", "SLV", "USO",
+    "XLK", "XLF", "XLY", "XLP", "XLV", "XLI", "XLE", "XLU", "XLB")
 
 k_factors <- 3
 
@@ -29,22 +27,20 @@ set.seed(2025)
 
 pkgs <- c("quantmod", "dplyr", "tidyr", "zoo", "ggplot2", "scales", "MASS", "matrixStats")
 
-for (p in pkgs) if (!requireNamespace(p, quietly = TRUE)) stop("此手动示例缺少依赖；请先参照章节README自行安装。", 
-    call. = FALSE)
+for (p in pkgs) if (!requireNamespace(p, quietly = TRUE)) NULL
 
 invisible(lapply(pkgs, library, character.only = TRUE))
 
 if (run_ae) {
-    if (!requireNamespace("keras", quietly = TRUE)) 
-        stop("此手动示例缺少依赖；请先参照章节README自行安装。", call. = FALSE)
+    if (!requireNamespace("keras", quietly = TRUE))
+        NULL
     library(keras)
 }
 
-options(stringsAsFactors = FALSE, scipen = 99, timeout = max(300, getOption("timeout")))
-
 get_ok <- function(sym) {
     tryCatch({
-        suppressWarnings(getSymbols(sym, src = "yahoo", from = start_date - 30, to = end_date, auto.assign = FALSE))
+        suppressWarnings(getSymbols(sym, src = "yahoo", from = start_date - 30, to = end_date,
+            auto.assign = FALSE))
     }, error = function(e) NULL)
 }
 
@@ -109,13 +105,15 @@ Z_te_pca <- scale(Xs_te, center = FALSE, scale = FALSE) %*% pca$rotation[, 1:k_f
 if (run_ae) {
     p <- ncol(Xs_tr)
     inputs <- layer_input(shape = p)
-    x <- layer_dense(layer_dropout(layer_dense(inputs, units = 64, activation = "relu"), rate = 0.1), units = k_factors, 
-        activation = "linear", name = "latent")
-    y <- layer_dense(layer_dropout(layer_dense(x, units = 64, activation = "relu"), rate = 0.1), units = p, activation = "linear")
-    ae <- compile(keras_model(inputs = inputs, outputs = y), optimizer = optimizer_adam(learning_rate = 0.01), 
+    x <- layer_dense(layer_dropout(layer_dense(inputs, units = 64, activation = "relu"), rate = 0.1),
+        units = k_factors, activation = "linear", name = "latent")
+    y <- layer_dense(layer_dropout(layer_dense(x, units = 64, activation = "relu"), rate = 0.1),
+        units = p, activation = "linear")
+    ae <- compile(keras_model(inputs = inputs, outputs = y), optimizer = optimizer_adam(learning_rate = 0.01),
         loss = "mse")
-    fit(ae, x = as.matrix(Xs_tr), y = as.matrix(Xs_tr), validation_split = 0.1, epochs = 80, batch_size = 64, callbacks = list(callback_early_stopping(monitor = "val_loss", 
-        patience = 8, restore_best_weights = TRUE)), verbose = 0)
+    fit(ae, x = as.matrix(Xs_tr), y = as.matrix(Xs_tr), validation_split = 0.1, epochs = 80,
+        batch_size = 64, callbacks = list(callback_early_stopping(monitor = "val_loss", patience = 8,
+            restore_best_weights = TRUE)), verbose = 0)
     encoder <- keras_model(inputs = inputs, outputs = get_layer(ae, "latent")$output)
     Z_tr <- as.matrix(encoder %>% predict(as.matrix(Xs_tr)))
     Z_te <- as.matrix(encoder %>% predict(as.matrix(Xs_te)))
@@ -146,6 +144,8 @@ A_vec <- setNames(numeric(N), assets)
 
 S_eps <- setNames(numeric(N), assets)
 
+E_tr <- matrix(NA_real_, nrow(R_tr), N)
+
 ols_fit <- function(y, Zdf) {
     fit <- lm(y ~ ., data = cbind(y = y, Zdf))
     cf <- coef(fit)
@@ -157,11 +157,11 @@ ols_fit <- function(y, Zdf) {
 }
 
 ridge_fit <- function(y, Zdf, lambda = 1e-04) {
-    if (!requireNamespace("MASS", quietly = TRUE)) 
-        stop("此手动示例缺少依赖；请先参照章节README自行安装。", call. = FALSE)
+    if (!requireNamespace("MASS", quietly = TRUE))
+        install.packages("MASS")
     X <- as.matrix(Zdf)
     rr <- MASS::lm.ridge(y ~ X, lambda = lambda)
-    beta <- setNames(as.numeric(rr$coef), colnames(X))
+    beta <- setNames(as.numeric(coef(rr)[-1]), colnames(X))
     yhat <- as.numeric(X %*% beta)
     alpha <- mean(y - yhat)
     yhat <- alpha + yhat
@@ -172,20 +172,22 @@ for (j in seq_along(assets)) {
     y <- R_tr[, j]
     Zdf <- as.data.frame(Z_tr)
     fit <- try(ols_fit(y, Zdf), silent = TRUE)
-    if (inherits(fit, "try-error")) 
+    if (inherits(fit, "try-error"))
         fit <- ridge_fit(y, Zdf, lambda = 1e-04)
     beta <- fit$beta
     names(beta) <- gsub("`", "", names(beta))
     common <- intersect(fac_names, names(beta))
-    if (length(common) > 0) 
+    if (length(common) > 0)
         B_mat[common, j] <- as.numeric(beta[common])
     A_vec[j] <- fit$alpha
     S_eps[j] <- sd(y - fit$yhat)
+    E_tr[, j] <- as.numeric(y - fit$yhat)
 }
 
 cat("B_mat 维度: ", paste(dim(B_mat), collapse = " x "), "\n")
 
-stopifnot(nrow(B_mat) == k, ncol(B_mat) == N, all(rownames(B_mat) == fac_names), all(colnames(B_mat) == assets))
+stopifnot(nrow(B_mat) == k, ncol(B_mat) == N, all(rownames(B_mat) == fac_names), all(colnames(B_mat) ==
+    assets))
 
 w <- rep(1/length(assets), length(assets))
 
@@ -196,12 +198,15 @@ b_port <- as.numeric(B_mat %*% w)
 if (use_ewma) {
     wts <- lambda_ewma^(rev(seq_len(nrow(Z_tr))) - 1)
     wts <- wts/sum(wts)
-    Sigma_F <- cov.wt(Z_tr, wt = wts, center = rep(0, ncol(Z_tr)))$cov
+    cw <- cov.wt(Z_tr, wt = wts)
+    Sigma_F <- cw$cov
+    mu_F <- cw$center
 } else {
     Sigma_F <- cov(Z_tr)
+    mu_F <- colMeans(Z_tr)
 }
 
-Sigma_eps <- diag(S_eps^2, nrow = N)
+Sigma_eps <- cov(E_tr)
 
 sigma_idio2 <- as.numeric(t(w) %*% Sigma_eps %*% w)
 
@@ -219,32 +224,36 @@ sigma_test_realized <- sd(pnl_true_te)
 
 sigma_target <- sd(as.numeric(as.matrix(R_tr) %*% w))
 
-print(c(sigma_factor = sigma_factor, sigma_idio = sqrt(sigma_idio2), sigma_model = sigma_model, sigma_test_realized = sigma_test_realized))
+print(c(sigma_factor = sigma_factor, sigma_idio = sqrt(sigma_idio2), sigma_model = sigma_model,
+    sigma_test_realized = sigma_test_realized))
 
 VaR_hist <- -quantile(pnl_true_te, probs = 1 - alpha, na.rm = TRUE)
 
 ES_hist <- -mean(pnl_true_te[pnl_true_te <= quantile(pnl_true_te, probs = 1 - alpha, na.rm = TRUE)])
 
-cat(sprintf("历史法 (真实组合)：VaR@%.0f%%=%.4f, ES@%.0f%%=%.4f\n", alpha * 100, VaR_hist, alpha * 100, 
-    ES_hist))
+cat(sprintf("历史法 (真实组合)：VaR@%.0f%%=%.4f, ES@%.0f%%=%.4f\n", alpha * 100, VaR_hist,
+    alpha * 100, ES_hist))
 
 mc_sims <- 10000
 
-F_draw <- MASS::mvrnorm(n = mc_sims, mu = rep(0, k), Sigma = Sigma_F)
+F_draw <- MASS::mvrnorm(n = mc_sims, mu = mu_F, Sigma = Sigma_F)
 
-raw_mc <- as.numeric(F_draw %*% b_port) + rnorm(mc_sims, 0, sqrt(sigma_idio2))
+mu_port <- sum(w * A_vec) + sum(b_port * mu_F)
 
-pnl_mc <- if (vol_target) as.numeric(sigma_target/sigma_model) * raw_mc else raw_mc
+raw_mc <- sum(w * A_vec) + as.numeric(F_draw %*% b_port) + rnorm(mc_sims, 0, sqrt(sigma_idio2))
+
+pnl_mc <- if (vol_target) mu_port + as.numeric(sigma_target/sigma_model) * (raw_mc - mu_port) else raw_mc
 
 VaR_mc <- -quantile(pnl_mc, probs = 1 - alpha, na.rm = TRUE)
 
 ES_mc <- -mean(pnl_mc[pnl_mc <= quantile(pnl_mc, probs = 1 - alpha, na.rm = TRUE)])
 
-cat(sprintf("因子MC (模型)：   VaR@%.0f%%=%.4f, ES@%.0f%%=%.4f\n", alpha * 100, VaR_mc, alpha * 100, ES_mc))
+cat(sprintf("因子MC (模型)：   VaR@%.0f%%=%.4f, ES@%.0f%%=%.4f\n", alpha * 100, VaR_mc,
+    alpha * 100, ES_mc))
 
 boot_expo_safe <- function(R_tr, Z_tr, w, B = 200, alpha = 0.95, lambda_ridge = 1e-04) {
     stopifnot(nrow(R_tr) == nrow(Z_tr))
-    if (is.null(colnames(Z_tr)) || anyDuplicated(colnames(Z_tr)) > 0) 
+    if (is.null(colnames(Z_tr)) || anyDuplicated(colnames(Z_tr)) > 0)
         colnames(Z_tr) <- paste0("F", seq_len(ncol(Z_tr)))
     fac_names <- colnames(Z_tr)
     assets <- colnames(R_tr)
@@ -262,42 +271,62 @@ boot_expo_safe <- function(R_tr, Z_tr, w, B = 200, alpha = 0.95, lambda_ridge = 
         list(alpha = alpha, beta = beta, yhat = yhat)
     }
     ridge_fit <- function(y, Zdf, lambda = 1e-04) {
-        if (!requireNamespace("MASS", quietly = TRUE)) 
-            stop("此手动示例缺少依赖；请先参照章节README自行安装。", call. = FALSE)
+        if (!requireNamespace("MASS", quietly = TRUE))
+            install.packages("MASS")
         X <- as.matrix(Zdf)
         rr <- MASS::lm.ridge(y ~ X, lambda = lambda)
-        beta <- setNames(as.numeric(rr$coef), colnames(X))
+        beta <- setNames(as.numeric(coef(rr)[-1]), colnames(X))
         yhat <- as.numeric(X %*% beta)
         alpha <- mean(y - yhat)
         yhat <- alpha + yhat
         list(alpha = alpha, beta = beta, yhat = yhat)
     }
     for (b in seq_len(B)) {
-        idx <- sample(nrow(R_tr), nrow(R_tr), replace = TRUE)
+        nn <- nrow(R_tr)
+        block_len <- max(2L, round(nn^(1/3)))
+        starts <- sample.int(nn, ceiling(nn/block_len), replace = TRUE)
+        idx <- unlist(lapply(starts, function(s) (s - 1L + 0:(block_len - 1L))%%nn + 1L))[seq_len(nn)]
         Rb <- R_tr[idx, , drop = FALSE]
         Zb <- Z_tr[idx, , drop = FALSE]
         colnames(Zb) <- fac_names
         Bmat_b <- matrix(0, nrow = k, ncol = N, dimnames = list(fac_names, assets))
         Sb2 <- numeric(N)
+        Ab <- numeric(N)
+        Eb <- matrix(NA_real_, nrow(Rb), N)
         for (j in seq_len(N)) {
             y <- Rb[, j]
             Zdf <- as.data.frame(Zb)
             fit <- try(ols_fit(y, Zdf), silent = TRUE)
-            if (inherits(fit, "try-error")) 
+            if (inherits(fit, "try-error"))
                 fit <- ridge_fit(y, Zdf, lambda = lambda_ridge)
             beta <- fit$beta
             names(beta) <- gsub("`", "", names(beta))
             common <- intersect(fac_names, names(beta))
-            if (length(common) > 0) 
+            if (length(common) > 0)
                 Bmat_b[common, j] <- as.numeric(beta[common])
             Sb2[j] <- stats::sd(y - fit$yhat)^2
+            Ab[j] <- fit$alpha
+            Eb[, j] <- as.numeric(y - fit$yhat)
         }
         b_port_b <- as.numeric(Bmat_b %*% w)
         mcs <- 5000L
-        SigmaF_b <- cov(Zb)
-        F_draw <- MASS::mvrnorm(mcs, mu = rep(0, k), Sigma = SigmaF_b)
-        eps_sd <- sqrt(as.numeric(t(w) %*% diag(Sb2, nrow = N) %*% w))
-        pnl_b <- as.numeric(F_draw %*% b_port_b) + stats::rnorm(mcs, 0, eps_sd)
+        if (use_ewma) {
+            wb <- lambda_ewma^(rev(seq_len(nrow(Zb))) - 1)
+            cw <- cov.wt(Zb, wt = wb/sum(wb))
+            SigmaF_b <- cw$cov
+            mub <- cw$center
+        }
+        else {
+            SigmaF_b <- cov(Zb)
+            mub <- colMeans(Zb)
+        }
+        F_draw <- MASS::mvrnorm(mcs, mu = mub, Sigma = SigmaF_b)
+        eps_sd <- sqrt(as.numeric(t(w) %*% cov(Eb) %*% w))
+        mu_b <- sum(w * Ab) + sum(b_port_b * mub)
+        pnl_b <- sum(w * Ab) + as.numeric(F_draw %*% b_port_b) + stats::rnorm(mcs, 0, eps_sd)
+        sig_b <- sqrt(as.numeric(t(b_port_b) %*% SigmaF_b %*% b_port_b) + eps_sd^2)
+        if (vol_target)
+            pnl_b <- mu_b + sd(as.numeric(as.matrix(Rb) %*% w))/sig_b * (pnl_b - mu_b)
         VaR_b[b] <- -stats::quantile(pnl_b, probs = 1 - alpha, na.rm = TRUE)
         ES_b[b] <- -mean(pnl_b[pnl_b <= stats::quantile(pnl_b, probs = 1 - alpha, na.rm = TRUE)])
     }
@@ -314,9 +343,10 @@ cat(sprintf("自助 VaR 区间 [5%%,50%%,95%%]：%s\n", paste(round(VaR_ci, 4), 
 
 cat(sprintf("自助 ES  区间 [5%%,50%%,95%%]：%s\n", paste(round(ES_ci, 4), collapse = " / ")))
 
-df_fac <- tidyr::pivot_longer(data.frame(date = index(R_te), Z_te), -date, names_to = "Factor", values_to = "Value")
+df_fac <- tidyr::pivot_longer(data.frame(date = index(R_te), Z_te), -date, names_to = "Factor",
+    values_to = "Value")
 
-g1 <- ggplot(df_fac, aes(date, Value, color = Factor)) + geom_line() + theme_minimal() + labs(title = "测试期因子时间序列", 
+g1 <- ggplot(df_fac, aes(date, Value, color = Factor)) + geom_line() + theme_minimal() + labs(title = "测试期因子时间序列",
     x = NULL, y = "Factor")
 
 df_exp <- as.data.frame(t(B_mat))
@@ -325,13 +355,15 @@ df_exp$Asset <- rownames(df_exp)
 
 df_exp <- tidyr::pivot_longer(df_exp, -Asset, names_to = "Factor", values_to = "Beta")
 
-g2 <- ggplot(df_exp, aes(Factor, Asset, fill = Beta)) + geom_tile() + scale_fill_gradient2(low = "steelblue", high = "firebrick", 
-    mid = "white") + theme_minimal() + labs(title = "资产对因子暴露（训练期 OLS）", x = NULL, y = NULL)
+g2 <- ggplot(df_exp, aes(Factor, Asset, fill = Beta)) + geom_tile() + scale_fill_gradient2(low = "steelblue",
+    high = "firebrick", mid = "white") + theme_minimal() + labs(title = "资产对因子暴露（训练期 OLS）",
+    x = NULL, y = NULL)
 
-df_risk <- data.frame(Method = c("Boot-VaR-50%", "Hist-VaR", "MC-VaR"), Value = c(VaR_ci[2], VaR_hist, VaR_mc))
+df_risk <- data.frame(Method = c("Boot-VaR-50%", "Hist-VaR", "MC-VaR"), Value = c(VaR_ci[2],
+    VaR_hist, VaR_mc))
 
-g3 <- ggplot(df_risk, aes(Method, Value, fill = Method)) + geom_col(width = 0.6) + theme_minimal() + labs(title = sprintf("组合 VaR@%.0f%% 对比", 
-    alpha * 100), y = "VaR")
+g3 <- ggplot(df_risk, aes(Method, Value, fill = Method)) + geom_col(width = 0.6) + theme_minimal() +
+    labs(title = sprintf("组合 VaR@%.0f%% 对比", alpha * 100), y = "VaR")
 
 print(g1)
 

@@ -1,20 +1,23 @@
-# 正文来源：CH9-连续金融模型.tex，代码块 9；正文第 1673 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-PAV <- function(priceX, theta) {
-    lprice <- log(priceX)
-    delta_n <- 1/nrow(lprice)
-    K_n <- round(theta/sqrt(delta_n)/2) * 2
-    psi1 <- 1
-    psi2 <- 1/12
-    psi_K <- (1 + 2/K_n^2)/12
-    Z <- matrix(0, ncol = ncol(lprice), nrow = ncol(lprice))
-    for (j in 1:(nrow(lprice) - K_n + 1)) {
-        r <- (1/K_n) * colSums(lprice[(j + K_n/2):(j + K_n - 1), ] - lprice[j:(j + K_n/2 - 1), ])
-        Z <- Z + r %*% t(r)
+# 正文来源：CH9-连续金融模型.tex，代码块 9；修订稿第 1605 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+PAV <- function(price, theta = 0.8, annual_factor = 1) {
+    price <- as.matrix(price)
+    stopifnot(is.numeric(price), all(is.finite(price)), all(price > 0), length(theta) == 1,
+        theta > 0, length(annual_factor) == 1, annual_factor > 0)
+    r <- diff(log(price))
+    N <- nrow(r)
+    k <- floor(theta * sqrt(N))
+    stopifnot(k >= 2L, k <= N)
+    g <- function(x) pmin(x, 1 - x)
+    w <- g((1:(k - 1L))/k)
+    psi1 <- k * sum(diff(g((0:k)/k))^2)
+    psi2 <- sum(w^2)/k
+    z <- matrix(0, N - k + 2L, ncol(r))
+    for (i in 0:(N - k + 1L)) {
+        z[i + 1L, ] <- as.numeric(crossprod(w, r[i + seq_len(k - 1L), , drop = FALSE]))
     }
-    CX <- sqrt(delta_n)/(theta * psi2) * Z - psi1 * delta_n/(2 * theta^2 * psi2) * t(diff(lprice)) %*% diff(lprice)
-    return(CX * 252)
+    signal <- N/(N - k + 2) * crossprod(z)/(psi2 * k)
+    correction <- psi1 * crossprod(r)/(2 * psi2 * k^2)
+    annual_factor * (signal - correction)
 }

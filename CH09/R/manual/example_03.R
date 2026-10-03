@@ -1,9 +1,7 @@
-# 正文来源：CH9-连续金融模型.tex，代码块 3；正文第 737 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
+# 正文来源：CH9-连续金融模型.tex，代码块 3；修订稿第 740 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
 suppressPackageStartupMessages({
     library(MLEMVD)
     library(nloptr)
@@ -35,32 +33,37 @@ total_loglik <- function(logdensity_fun, param, x, del) {
     s
 }
 
-safe_vcov_from_I <- function(I, n) {
+safe_vcov_from_I <- function(I, n = NULL) {
     I <- 0.5 * (I + t(I))
-    I <- I + 1e-10 * diag(nrow(I))
-    tryCatch(solve(I)/n, error = function(e) MASS::ginv(I)/n)
+    ev <- eigen(I, symmetric = TRUE, only.values = TRUE)$values
+    if (any(!is.finite(ev)) || min(ev) <= 1e-10 * max(1, max(ev))) {
+        warning("信息矩阵非正定或接近奇异；不能据此报告可靠标准误。")
+        return(matrix(NA_real_, nrow(I), ncol(I)))
+    }
+    solve(I)
 }
 
-make_args <- function(param0, f_upper = 50, maxeval = 1500, method = c("LBFGS", "SBPLX"), deoptim_iter = 0, print_level = 0) {
+make_args <- function(param0, f_upper = 50, maxeval = 1500, method = c("LBFGS", "SBPLX"), deoptim_iter = 0,
+    print_level = 0) {
     method <- match.arg(method)
     p <- length(param0)
     l <- rep(-1, p)
     u <- rep(1, p)
     l[p] <- 1e-08
     u[p] <- f_upper
-    algo <- if (method == "LBFGS") 
+    algo <- if (method == "LBFGS")
         "NLOPT_LD_LBFGS"
     else "NLOPT_LN_SBPLX"
-    list(mode = "direct", nloptr = list(method = algo, maxeval = maxeval, xtol_rel = 1e-08, ftol_rel = 1e-10, ftol_abs = 0, 
-        print_level = print_level, l = l, u = u), DEoptim = list(maxiter = deoptim_iter, population = 80, strategy = 2), 
-        eval_g_ineq = NULL, eval_jac_g_ineq = NULL)
+    list(mode = "direct", nloptr = list(method = algo, maxeval = maxeval, xtol_rel = 1e-08,
+        ftol_rel = 1e-10, ftol_abs = 0, print_level = print_level, l = l, u = u), DEoptim = list(maxiter = deoptim_iter,
+        population = 80, strategy = 2), eval_g_ineq = NULL, eval_jac_g_ineq = NULL)
 }
 
 series_ll_finite <- function(logdensity_fun, x, del, par) {
     s <- 0
     for (i in 1:(length(x) - 1)) {
         li <- try(logdensity_fun(x[i + 1], x[i], del, par)$llk, silent = TRUE)
-        if (!is.numeric(li) || !is.finite(li)) 
+        if (!is.numeric(li) || !is.finite(li))
             return(FALSE)
         s <- s + li
     }
@@ -87,7 +90,8 @@ se_u6 <- sqrt(diag(vcov_u6))
 
 if (any(!is.finite(se_u6))) {
     cat("（提示）U6 信息矩阵条件数差，改用数值 Hessian。\n")
-    H_u6 <- numDeriv::hessian(function(p) -total_loglik(ModelU6_with_args, p, price_s, del), theta_u6)
+    H_u6 <- numDeriv::hessian(function(p) -total_loglik(ModelU6_with_args, p, price_s, del),
+        theta_u6)
     vcov_u6 <- safe_vcov_from_I(H_u6, n)
     se_u6 <- sqrt(diag(vcov_u6))
 }
@@ -123,7 +127,8 @@ start_u4 <- best_par
 
 message("U4 可行起点：", paste(round(start_u4, 6), collapse = ", "))
 
-args_u4 <- make_args(start_u4, f_upper = 100, maxeval = 2500, method = "SBPLX", deoptim_iter = 0, print_level = 1)
+args_u4 <- make_args(start_u4, f_upper = 100, maxeval = 2500, method = "SBPLX", deoptim_iter = 0,
+    print_level = 1)
 
 cat("\n=== U4（稳健近似 MLE，二次漂移，常数扩散）===\n")
 
@@ -133,12 +138,13 @@ theta_u4 <- setNames(as.numeric(fit_u4$solution), c("a", "b", "c", "f"))
 
 print(theta_u4)
 
-I_u4_try <- try(as.matrix(logdensity2info(logdensity = ModelU4_with_args, x = price_s, del = del, param = theta_u4)), 
-    silent = TRUE)
+I_u4_try <- try(as.matrix(logdensity2info(logdensity = ModelU4_with_args, x = price_s, del = del,
+    param = theta_u4)), silent = TRUE)
 
 if (inherits(I_u4_try, "try-error") || any(!is.finite(I_u4_try))) {
     cat("（提示）U4 信息矩阵不可用/不稳，改用数值 Hessian。\n")
-    H_u4 <- numDeriv::hessian(function(p) -total_loglik(ModelU4_with_args, p, price_s, del), theta_u4)
+    H_u4 <- numDeriv::hessian(function(p) -total_loglik(ModelU4_with_args, p, price_s, del),
+        theta_u4)
     vcov_u4 <- safe_vcov_from_I(H_u4, n)
 } else {
     vcov_u4 <- safe_vcov_from_I(I_u4_try, n)

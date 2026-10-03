@@ -1,0 +1,4 @@
+Federal Reserve GSW fitted nominal Treasury curve. SVENY columns: continuously compounded zero-coupon yields in percent. The file preserves the provider metadata.
+Source: https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv
+Downloaded: 2026-10-03
+SHA256: 379cae673092e64aea0baa58796b276ebc5c9c7f2c342d66e7b1fe1e52fd0421

@@ -1,14 +1,12 @@
-# 正文来源：CH11-风险管理与极值理论.tex，代码块 4；正文第 1368 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
+# 正文来源：CH11-风险管理与极值理论.tex，代码块 4；修订稿第 1396 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
 req <- c("quantmod", "xts", "zoo", "rugarch")
 
 inst <- setdiff(req, rownames(installed.packages()))
 
-if (length(inst)) stop("此手动示例缺少依赖；请先参照章节README自行安装。", call. = FALSE)
+if (length(inst)) NULL
 
 suppressPackageStartupMessages(invisible(lapply(req, library, character.only = TRUE)))
 
@@ -45,7 +43,8 @@ cat("== 无条件 ES：整体样本 ==\n")
 
 for (a in alpha_set) {
     out <- es_empirical(r_num, a)
-    cat(sprintf("alpha=%.2f -> VaR(loss)=%.4f, ES1=%.4f, ES2=%.4f\n", a, out["VaR"], out["ES_via_cond_mean"], out["ES_via_tail_avg"]))
+    cat(sprintf("alpha=%.2f -> VaR(loss)=%.4f, ES1=%.4f, ES2=%.4f\n", a, out["VaR"], out["ES_via_cond_mean"],
+        out["ES_via_tail_avg"]))
 }
 
 roll_es <- function(x, alpha, win) {
@@ -53,7 +52,7 @@ roll_es <- function(x, alpha, win) {
     res <- matrix(NA_real_, n, 3)
     colnames(res) <- c("VaR", "ES1", "ES2")
     for (t in seq_len(n)) {
-        if (t < win) 
+        if (t < win)
             next
         w <- x[(t - win + 1):t]
         tmp <- es_empirical(w, alpha)
@@ -66,12 +65,12 @@ roll_res_list <- lapply(alpha_set, function(a) roll_es(r_num, a, roll_win))
 
 names(roll_res_list) <- paste0("alpha_", alpha_set)
 
-spec_norm <- ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)), mean.model = list(armaOrder = c(0, 
+spec_norm <- ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)), mean.model = list(armaOrder = c(0,
     0), include.mean = TRUE), distribution.model = "norm")
 
 fit_norm <- ugarchfit(spec_norm, ret, solver = "hybrid")
 
-spec_t <- ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)), mean.model = list(armaOrder = c(0, 
+spec_t <- ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(1, 1)), mean.model = list(armaOrder = c(0,
     0), include.mean = TRUE), distribution.model = "std")
 
 fit_t <- ugarchfit(spec_t, ret, solver = "hybrid")
@@ -110,7 +109,8 @@ cond_paths <- lapply(alpha_set, function(a) {
     mt_ <- m_alpha_std(a, nu)
     VaR_loss_t <- -(mu_t + sig_t * qt_)
     ES_loss_t <- -(mu_t + sig_t * mt_)
-    xts(cbind(VaR_norm = VaR_loss_norm, ES_norm = ES_loss_norm, VaR_t = VaR_loss_t, ES_t = ES_loss_t), order.by = index(ret))
+    xts(cbind(VaR_norm = VaR_loss_norm, ES_norm = ES_loss_norm, VaR_t = VaR_loss_t, ES_t = ES_loss_t),
+        order.by = index(ret))
 })
 
 names(cond_paths) <- paste0("alpha_", alpha_set)
@@ -149,17 +149,17 @@ if (a_plot %in% names(cond_paths)) {
     op <- par(no.readonly = TRUE)
     on.exit(par(op), add = TRUE)
     par(mfrow = c(1, 2), mar = c(4, 4, 2, 1))
-    plot(index(r_tail), as.numeric(r_tail), type = "h", main = "历史法（滚动窗口）VaR/ES（alpha=1%）", 
+    plot(index(r_tail), as.numeric(r_tail), type = "h", main = "历史法（滚动窗口）VaR/ES（alpha=1%）",
         xlab = "", ylab = "日对数收益", col = "grey40")
     lines(index(h_tail), -h_tail$VaR, lwd = 2)
     lines(index(h_tail), -h_tail$ES1, lwd = 2, lty = 2)
-    legend("bottomleft", c("收益", "-VaR (loss)", "-ES (loss)"), lty = c(1, 1, 2), lwd = c(1, 2, 2), col = c("grey40", 
-        "black", "black"), bty = "n")
-    plot(index(r_tail), as.numeric(r_tail), type = "h", main = "条件 GARCH-t VaR/ES（alpha=1%）", xlab = "", 
-        ylab = "日对数收益", col = "grey40")
+    legend("bottomleft", c("收益", "-VaR (loss)", "-ES (loss)"), lty = c(1, 1, 2), lwd = c(1,
+        2, 2), col = c("grey40", "black", "black"), bty = "n")
+    plot(index(r_tail), as.numeric(r_tail), type = "h", main = "条件 GARCH-t VaR/ES（alpha=1%）",
+        xlab = "", ylab = "日对数收益", col = "grey40")
     lines(index(c_tail), -c_tail$VaR_t, lwd = 2)
     lines(index(c_tail), -c_tail$ES_t, lwd = 2, lty = 2)
-    legend("bottomleft", c("收益", "-VaR_t (loss)", "-ES_t (loss)"), lty = c(1, 1, 2), lwd = c(1, 2, 2), col = c("grey40", 
-        "black", "black"), bty = "n")
+    legend("bottomleft", c("收益", "-VaR_t (loss)", "-ES_t (loss)"), lty = c(1, 1, 2), lwd = c(1,
+        2, 2), col = c("grey40", "black", "black"), bty = "n")
     par(mfrow = c(1, 1))
 }

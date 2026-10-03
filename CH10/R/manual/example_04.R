@@ -1,9 +1,7 @@
-# 正文来源：CH10-收益率曲线.tex，代码块 4；正文第 619 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
+# 正文来源：CH10-收益率曲线.tex，代码块 4；修订稿第 576 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
 suppressPackageStartupMessages(library(quantmod))
 
 taus <- c(0.5, 1, 2, 3, 5, 7, 10, 20, 30)
@@ -40,16 +38,16 @@ discount_from_piecewise_f <- function(t, tau_knots, f_vec) {
     I <- length(f_vec)
     stopifnot(length(tau_knots) == I + 1)
     integ <- sapply(t, function(tt) {
-        if (tt <= 0) 
+        if (tt <= 0)
             return(0)
         k <- max(which(tau_knots < tt))
         k <- min(k, I)
         full <- 0
-        if (k >= 1) {
-            full <- sum(f_vec[1:(k - 1)] * diff(tau_knots)[1:(k - 1)])
-            rem <- tt - tau_knots[k]
-            full <- full + f_vec[k] * rem
+        if (k > 1L) {
+            idx <- seq_len(k - 1L)
+            full <- sum(f_vec[idx] * diff(tau_knots)[idx])
         }
+        full <- full + f_vec[k] * (tt - tau_knots[k])
         full
     })
     exp(-integ)
@@ -72,7 +70,7 @@ solve_f_i <- function(i, f_vec, tau_knots, bond_list, bracket = c(-0.05, 0.2)) {
         b <- b + 0.05
         iter <- iter + 1
     }
-    if (obj(a) * obj(b) > 0) 
+    if (obj(a) * obj(b) > 0)
         stop("无法在合理区间内找到根：请检查样本或调整初值/区间。")
     uniroot(obj, interval = c(a, b), tol = 1e-10)$root
 }
@@ -96,7 +94,7 @@ for (i in 1:I) {
 grid <- seq(0, max(taus), by = 0.01)
 
 f_grid <- sapply(grid, function(tt) {
-    if (tt <= 0) 
+    if (tt <= 0)
         return(f_hat[1])
     k <- max(which(tau_knots < tt))
     k <- min(k, I)
@@ -115,7 +113,8 @@ p_fitted <- sapply(seq_along(bond_list), function(i) {
     sum(bi$cf * d_i)
 })
 
-fit_tab <- data.frame(tau = taus, p_target = 1, p_fitted = p_fitted, abs_err = p_fitted - 1)
+fit_tab <- data.frame(tau = taus, p_target = 1, p_fitted = p_fitted, price_error = p_fitted -
+    1)
 
 cat("=== Fama–Bliss 分段常数远期（序贯引导）===\n")
 
@@ -129,7 +128,8 @@ plot(grid, d_grid, type = "l", lwd = 2, xlab = "t (years)", ylab = "d(t)", main 
 
 abline(h = 1, v = 0, col = "grey80", lty = 3)
 
-plot(grid, 100 * y_grid, type = "l", lwd = 2, xlab = "t (years)", ylab = "y(t) [% p.a., cont.]", main = "连续复利收益率 y(t)")
+plot(grid, 100 * y_grid, type = "l", lwd = 2, xlab = "t (years)", ylab = "y(t) [% p.a., cont.]",
+    main = "连续复利收益率 y(t)")
 
 plot(grid, 100 * f_grid, type = "s", lwd = 2, xlab = "t (years)", ylab = "f(t) [% p.a.]", main = "分段常数远期 f(t)")
 

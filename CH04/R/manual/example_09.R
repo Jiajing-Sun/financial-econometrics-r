@@ -1,6 +1,6 @@
-# 正文来源：CH4-自回归移动平均模型.tex，代码块 9；正文第 1173 行。
-# 最新SVAR部分采用已识别AB限制；全章片段仅手动执行，见manual/index.csv。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH4-自回归移动平均模型.tex，代码块 9；修订稿第 1179 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 set.seed(123)
 
 data <- rnorm(100, mean = 5, sd = 3)

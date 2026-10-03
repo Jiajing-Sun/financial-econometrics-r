@@ -1,40 +1,27 @@
-# 正文来源：CH9-连续金融模型.tex，代码块 5；正文第 1167 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-invisible(NULL)
-
-set.seed(123)
-
-invisible(NULL)
-
-library(readxl)
-
-aa <- read_excel("data/user/AA_daily20120103.xlsx", col_names = FALSE)
-
-TSRV <- function(priceX, K, m, n) {
-    lprice <- log(priceX)
-    RV_sub <- numeric(K)
-    for (j in 1:K) {
-        sub_sample <- lprice[seq(j, by = K, length.out = m + 1)]
-        returns <- diff(sub_sample)
-        RV_sub[j] <- sum(returns^2)
+# 正文来源：CH9-连续金融模型.tex，代码块 5；修订稿第 1148 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+TSRV <- function(price, K, annual_factor = 1) {
+    stopifnot(is.numeric(price), all(is.finite(price)), all(price > 0), length(K) == 1, K ==
+        as.integer(K), length(annual_factor) == 1, annual_factor > 0)
+    y <- log(price)
+    n <- length(y) - 1L
+    stopifnot(K > 1, K <= n)
+    rv_sub <- m <- numeric(K)
+    for (j in 0:(K - 1L)) {
+        z <- y[seq.int(j + 1L, n + 1L, by = K)]
+        m[j + 1L] <- length(z) - 1L
+        rv_sub[j + 1L] <- sum(diff(z)^2)
     }
-    returns_full <- diff(lprice)
-    RV_n <- sum(returns_full^2)
-    TSRV_estimator <- (1/K) * sum(RV_sub) - (m/n) * RV_n
-    return(TSRV_estimator)
+    ratio <- mean(m)/n
+    estimate <- (mean(rv_sub) - ratio * sum(diff(y)^2))/(1 - ratio)
+    annual_factor * estimate
 }
 
-priceX <- aa$...5
+raw <- readxl::read_excel("AA_daily20120103.xlsx", col_names = FALSE)
 
-K <- 5
+price <- as.numeric(raw[[5]])
 
-m <- 100
+K <- max(2L, floor((length(price) - 1L)^(2/3)))
 
-n <- length(priceX)
-
-TSRV_estimate <- TSRV(priceX, K, m, n)
-
-TSRV_estimate
+TSRV(price, K)

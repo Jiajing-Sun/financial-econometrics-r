@@ -1,82 +1,63 @@
-# 正文来源：CH10-收益率曲线.tex，代码块 1；正文第 104 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
-suppressPackageStartupMessages(library(quantmod))
+# 正文来源：CH10-收益率曲线.tex，代码块 1；修订稿第 105 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
+file <- "data/feds200628.csv"
 
-taus <- c(0.25, 0.5, 1, 2, 3, 5, 7, 10, 20, 30)
+url <- paste0("https://www.federalreserve.gov/data/", "yield-curve-tables/feds200628.csv")
 
-fred <- c("DGS3MO", "DGS6MO", "DGS1", "DGS2", "DGS3", "DGS5", "DGS7", "DGS10", "DGS20", "DGS30")
+if (!file.exists(file)) {
+    download.file(url, file, mode = "wb")
+}
 
-getSymbols(fred, src = "FRED", auto.assign = TRUE, warnings = FALSE)
+txt <- readLines(file, warn = FALSE)
 
-Y <- do.call(merge, lapply(fred, get))
+header <- grep("^\"?Date\"?,", txt)[1]
 
-Yc <- Y[stats::complete.cases(Y)]
+if (is.na(header)) stop("未找到 Date 表头，请检查是否下载了正确的 CSV。")
 
-stopifnot(nrow(Yc) > 0)
+data <- read.csv(file, skip = header - 1L, na.strings = c("NA", "N/A", ""), check.names = FALSE)
 
-last_row <- tail(Yc, 1)
+taus <- c(1, 2, 3, 5, 7, 10, 20, 30)
 
-asof <- index(last_row)
+cols <- sprintf("SVENY%02d", taus)
 
-y_annual_pct <- as.numeric(last_row)
+stopifnot(all(c("Date", cols) %in% names(data)))
 
-y_annual <- y_annual_pct/100
+dates <- as.Date(data$Date, format = "%Y-%m-%d")
 
-y_cc <- log(1 + y_annual)
+if (all(is.na(dates))) dates <- as.Date(data$Date, format = "%d-%m-%Y")
+
+valid <- !is.na(dates) & complete.cases(data[, cols])
+
+stopifnot(any(valid))
+
+i <- which(valid)[which.max(dates[valid])]
+
+y_cc <- as.numeric(unlist(data[i, cols], use.names = FALSE))/100
+
+stopifnot(all(is.finite(y_cc)))
 
 d_tau <- exp(-taus * y_cc)
 
-g_tau <- taus * y_cc
+gfit <- splinefun(c(0, taus), c(0, taus * y_cc), method = "natural")
 
-fit <- smooth.spline(x = taus, y = g_tau, spar = NULL)
+f_cc <- gfit(taus, deriv = 1)
 
-gprime <- predict(fit, x = taus, deriv = 1)$y
+period_return <- head(d_tau, -1)/tail(d_tau, -1) - 1
 
-f_tau <- gprime
+forward_simple_annual <- period_return/diff(taus)
 
-f_disc <- rep(NA_real_, length(taus) - 1)
+print(data.frame(date = dates[i], tau_years = taus, y_cc = y_cc, discount = d_tau, f_cc = f_cc))
 
-for (i in 1:(length(taus) - 1)) {
-    f_disc[i] <- d_tau[i]/d_tau[i + 1] - 1
-}
+print(data.frame(from = head(taus, -1), to = tail(taus, -1), period_return, forward_simple_annual))
 
-res <- data.frame(asof = as.character(asof), tau_year = taus, y_annual = y_annual, y_cc = y_cc, d_tau = d_tau, 
-    f_cc = f_tau)
+op <- par(mfrow = c(1, 3))
 
-disc_tab <- data.frame(from_tau = taus[-length(taus)], to_tau = taus[-1], f_disc = f_disc)
+plot(taus, 100 * y_cc, type = "b", xlab = "Years", ylab = "% p.a.", main = "Zero-coupon yield")
 
-cat("=== FRED Constant Maturity US Treasury — as of", as.character(asof), "===\n")
+plot(taus, d_tau, type = "b", xlab = "Years", ylab = "Discount factor")
 
-num_cols_res <- sapply(res, is.numeric)
-
-res_print <- res
-
-res_print[num_cols_res] <- lapply(res_print[num_cols_res], round, 6)
-
-print(res_print, row.names = FALSE)
-
-cat("\n--- Discrete one-period forwards between adjacent nodes (annual compounding) ---\n")
-
-num_cols_disc <- sapply(disc_tab, is.numeric)
-
-disc_print <- disc_tab
-
-disc_print[num_cols_disc] <- lapply(disc_print[num_cols_disc], round, 6)
-
-print(disc_print, row.names = FALSE)
-
-op <- par(mfrow = c(1, 3), mar = c(4, 4, 2, 1))
-
-plot(taus, y_cc * 100, type = "b", pch = 19, xlab = "Maturity τ (years)", ylab = "Yield y(τ) [% p.a., cont.]", 
-    main = "Zero-coupon Yield (cont.)")
-
-plot(taus, d_tau, type = "b", pch = 19, xlab = "Maturity τ (years)", ylab = "Discount d(τ)", main = "Discount Function")
-
-plot(taus, f_tau * 100, type = "b", pch = 19, xlab = "Maturity τ (years)", ylab = "Instantaneous f(τ) [% p.a.]", 
-    main = "Instantaneous Forward (cont.)")
+plot(taus, 100 * f_cc, type = "b", xlab = "Years", ylab = "% p.a.", main = "Interpolated forward")
 
 par(op)

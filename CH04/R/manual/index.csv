@@ -1,23 +1,23 @@
-chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
-CH04,1,CH4-自回归移动平均模型.tex,178,遍历性和混合性条件,R/manual/example_01.R,parse_only_not_executed,,ggplot2;ragg,
-CH04,2,CH4-自回归移动平均模型.tex,531,移动平均（MA）模型,R/manual/example_02.R,parse_only_not_executed,,ggplot2,
-CH04,3,CH4-自回归移动平均模型.tex,699,自回归移动平均过程,R/manual/example_03.R,parse_only_not_executed,,ggplot2,
-CH04,4,CH4-自回归移动平均模型.tex,871,MA 模型的自相关结构,R/manual/example_04.R,parse_only_not_executed,,stats,
-CH04,5,CH4-自回归移动平均模型.tex,936,偏自相关系数,R/manual/example_05.R,parse_only_not_executed,,forecast,
-CH04,6,CH4-自回归移动平均模型.tex,1036,利用尤尔–沃克方程对 AR 模型进行参数估计,R/manual/example_06.R,parse_only_not_executed,,,
-CH04,7,CH4-自回归移动平均模型.tex,1065,利用尤尔–沃克方程对 AR 模型进行参数估计,,excluded_console_transcript,,,
-CH04,8,CH4-自回归移动平均模型.tex,1077,利用尤尔–沃克方程对 AR 模型进行参数估计,R/manual/example_08.R,parse_only_not_executed,,,
-CH04,9,CH4-自回归移动平均模型.tex,1173,极大似然法初探,R/manual/example_09.R,parse_only_not_executed,,,
-CH04,10,CH4-自回归移动平均模型.tex,1213,极大似然法初探,R/manual/example_10.R,parse_only_not_executed,,,
-CH04,11,CH4-自回归移动平均模型.tex,1280,ARMA过程的极大似然估计,R/manual/example_11.R,parse_only_not_executed,,,
-CH04,12,CH4-自回归移动平均模型.tex,1315,ARMA过程的极大似然估计,R/manual/example_12.R,parse_only_not_executed,,,
-CH04,13,CH4-自回归移动平均模型.tex,1391,"基于 AIC 和 BIC 的 ARMA(p,q) 阶数选择",R/manual/example_13.R,parse_only_not_executed,,forecast,
-CH04,14,CH4-自回归移动平均模型.tex,1419,"基于 AIC 和 BIC 的 ARMA(p,q) 阶数选择",,excluded_console_transcript,,,
-CH04,15,CH4-自回归移动平均模型.tex,1723,R中验证极大似然估计的性质,R/manual/example_15.R,parse_only_not_executed,,,
-CH04,16,CH4-自回归移动平均模型.tex,1869,单位根,R/manual/example_16.R,parse_only_not_executed,,forecast;ggplot2,
-CH04,17,CH4-自回归移动平均模型.tex,1944,单位根,R/manual/example_17.R,parse_only_not_executed,,,
-CH04,18,CH4-自回归移动平均模型.tex,2333,案例：采用ARMA模型对上证指数收益率进行建模及预测,R/manual/example_18.R,parse_only_not_executed,,dplyr;forecast;ggplot2;tseries,
-CH04,19,CH4-自回归移动平均模型.tex,2436,案例：采用ARMA模型对上证指数收益率进行建模及预测,,excluded_console_transcript,,,
-CH04,20,CH4-自回归移动平均模型.tex,2477,案例：采用ARMA模型对上证指数收益率进行建模及预测,R/manual/example_20.R,parse_only_not_executed,,,
-CH04,21,CH4-自回归移动平均模型.tex,3047,The A-model,R/manual/example_21.R,parse_only_not_executed,,vars,
-CH04,22,CH4-自回归移动平均模型.tex,3093,The A-model,R/manual/example_22.R,parse_only_not_executed,,vars,
+"chapter","body_block","source_chapter","source_line_at_extraction","section","file","network_opt_in","packages_detected","note","status"
+"CH04",1,"CH4-自回归移动平均模型.tex",178,"遍历性和混合性条件 \label","R/manual/example_01.R","","ggplot2;ragg;rstudioapi","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",2,"CH4-自回归移动平均模型.tex",531,"移动平均（MA）模型","R/manual/example_02.R","","ggplot2;rstudioapi","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",3,"CH4-自回归移动平均模型.tex",705,"自回归移动平均过程\label","R/manual/example_03.R","","ggplot2;rstudioapi;stats","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",4,"CH4-自回归移动平均模型.tex",877,"MA 模型的自相关结构","R/manual/example_04.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",5,"CH4-自回归移动平均模型.tex",942,"偏自相关系数\label","R/manual/example_05.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",6,"CH4-自回归移动平均模型.tex",1042,"利用尤尔–沃克方程对 AR 模型进行参数估计","R/manual/example_06.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",7,"CH4-自回归移动平均模型.tex",1071,"利用尤尔–沃克方程对 AR 模型进行参数估计","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH04",8,"CH4-自回归移动平均模型.tex",1083,"利用尤尔–沃克方程对 AR 模型进行参数估计","R/manual/example_08.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",9,"CH4-自回归移动平均模型.tex",1179,"极大似然法初探 \label","R/manual/example_09.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",10,"CH4-自回归移动平均模型.tex",1219,"极大似然法初探 \label","R/manual/example_10.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",11,"CH4-自回归移动平均模型.tex",1286,"ARMA过程的极大似然估计 \label","R/manual/example_11.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",12,"CH4-自回归移动平均模型.tex",1321,"ARMA过程的极大似然估计 \label","R/manual/example_12.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",13,"CH4-自回归移动平均模型.tex",1397,"基于 AIC 和 BIC 的 ARMA(p,q) 阶数选择","R/manual/example_13.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",14,"CH4-自回归移动平均模型.tex",1425,"基于 AIC 和 BIC 的 ARMA(p,q) 阶数选择","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH04",15,"CH4-自回归移动平均模型.tex",1716,"R中验证极大似然估计的性质","R/manual/example_15.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",16,"CH4-自回归移动平均模型.tex",1845," 单位根 ","R/manual/example_16.R","","forecast;ggplot2;rstudioapi","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",17,"CH4-自回归移动平均模型.tex",1920," 单位根 ","R/manual/example_17.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",18,"CH4-自回归移动平均模型.tex",2305,"案例：采用ARMA模型对上证指数收益率进行建模及预测 \label","R/manual/example_18.R","","dplyr;forecast;ggplot2;rstudioapi;tseries","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",19,"CH4-自回归移动平均模型.tex",2408,"案例：采用ARMA模型对上证指数收益率进行建模及预测 \label","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH04",20,"CH4-自回归移动平均模型.tex",2450,"案例：采用ARMA模型对上证指数收益率进行建模及预测 \label","R/manual/example_20.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",21,"CH4-自回归移动平均模型.tex",3014,"The A-model","R/manual/example_21.R","","vars","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH04",22,"CH4-自回归移动平均模型.tex",3060,"The A-model","R/manual/example_22.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"

@@ -58,3 +58,9 @@ WDI、FRED、Ken French、Yahoo、UCI等正文在线案例保留在手动目录�
 ## 许可
 
 公开存放不改变原作者及第三方权利。原课件的许可声明与正文代码的许可范围分别说明，详见 [版权与来源说明](LICENSE-NOTICE.txt)；数据与软件各循其来源条款。
+
+## 2026-10-03 revision
+
+Body-only examples were refreshed from the corrected manuscript. Changes include return timing, total-information covariance, TSRV/PAV indexing, zero-coupon yield data, tail backtests, rolling forecasts and factor-risk calculations. The optional deep-learning branches have not been trained in the verification environment.
+
+The GSW snapshot is stored in `CH10/data/feds200628.csv`; the SPY monthly snapshot for 2000–2024 is in `CH12/data/SPY_monthly_2000_2024.csv`. Online examples remain manual opt-in. No exercise solutions or teaching documents are included.

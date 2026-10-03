@@ -1,8 +1,6 @@
-# 正文来源：CH5-波动率模型.tex，代码块 1；正文第 151 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH5-波动率模型.tex，代码块 1；修订稿第 151 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 library(rugarch)
 
 library(ggplot2)
@@ -30,7 +28,8 @@ for (i in (length(alphas) + 1):n) {
 
 df = data.frame(time = 1:n, eps = eps)
 
-ggplot(df, aes(x = time, y = eps)) + geom_line() + labs(title = "模拟的ARCH (p) 过程", y = expression(epsilon[t]))
+ggplot(df, aes(x = time, y = eps)) + geom_line() + labs(title = "模拟的ARCH (p) 过程",
+    y = expression(epsilon[t]))
 
 aic_values <- rep(NA, 5)
 
@@ -39,7 +38,7 @@ bic_values <- rep(NA, 5)
 p_max <- 5
 
 for (p in 1:p_max) {
-    spec = ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(p, 0)), mean.model = list(armaOrder = c(0, 
+    spec = ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(p, 0)), mean.model = list(armaOrder = c(0,
         0), include.mean = FALSE))
     fit = try(ugarchfit(spec, data = eps), silent = TRUE)
     aic_values[p] <- infocriteria(fit)[1]
@@ -54,8 +53,8 @@ print(paste("最佳的p值 (AIC) ：", best_p_aic))
 
 print(paste("最佳的p值 (BIC) ：", best_p_bic))
 
-best_spec = ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(best_p_aic, 0)), mean.model = list(armaOrder = c(0, 
-    0), include.mean = FALSE))
+best_spec = ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(best_p_aic, 0)),
+    mean.model = list(armaOrder = c(0, 0), include.mean = FALSE))
 
 best_fit = ugarchfit(best_spec, data = eps)
 

@@ -1,8 +1,6 @@
-# 正文来源：CH5-波动率模型.tex，代码块 3；正文第 320 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH5-波动率模型.tex，代码块 3；修订稿第 320 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 library(rugarch)
 
 set.seed(123)
@@ -38,7 +36,7 @@ bic_values = matrix(NA, nrow = p_max, ncol = q_max, dimnames = list(p = 1:p_max,
 
 for (p in 1:p_max) {
     for (q in 1:q_max) {
-        spec = ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(p, q)), mean.model = list(armaOrder = c(0, 
+        spec = ugarchspec(variance.model = list(model = "sGARCH", garchOrder = c(p, q)), mean.model = list(armaOrder = c(0,
             0), include.mean = FALSE))
         fit = try(ugarchfit(spec = spec, data = y), silent = TRUE)
         aic_values[p, q] = infocriteria(fit)[1]

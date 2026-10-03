@@ -1,18 +1,16 @@
 {
   "status": "PASS",
-  "scope": "正文代码与正文数据；用户数据和当前运行目录按.gitignore排除",
-  "checked_categories": [
-    "本机绝对路径",
-    "常见凭据格式",
-    "题解/提示文件名",
-    "禁止发布的文稿与归档文件"
-  ],
+  "review_date": "2026-10-03",
+  "scope": "Textbook body examples and public data only; no hints, solutions or exercise-specific code.",
+  "files_checked": 303,
   "findings": [],
-  "R_syntax_files": 174,
-  "manual_body_files": 147,
+  "R_syntax_files": 173,
+  "manual_body_files": 146,
+  "source_body_blocks": 173,
+  "excluded_body_blocks": 27,
   "chapters": 12,
   "offline_entry_exit_zero": 12,
-  "empirical_exception": "CH06仅数据接口核验",
-  "reference_outputs": 61,
-  "reference_is_body_only": true
+  "empirical_exception": "CH06 default entry checks input interface only; no claim of completed live-data test.",
+  "optional_deep_learning_training": "not_run",
+  "full_manual_execution_claimed": false
 }

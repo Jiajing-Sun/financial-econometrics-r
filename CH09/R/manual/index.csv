@@ -1,12 +1,12 @@
-chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
-CH09,1,CH9-连续金融模型.tex,91,布朗运动,R/manual/example_01.R,parse_only_not_executed,,,
-CH09,2,CH9-连续金融模型.tex,726,案例：基于 Aït–Sahalia 似然展开的扩散模型近似极大似然估计与稳健推断,,dependency_installation_documented_only,,,
-CH09,3,CH9-连续金融模型.tex,737,案例：基于 Aït–Sahalia 似然展开的扩散模型近似极大似然估计与稳健推断,R/manual/example_03.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,MASS;MLEMVD;nloptr;numDeriv;quantmod,
-CH09,4,CH9-连续金融模型.tex,1038,测量误差模型,,excluded_console_or_raw_data,,,
-CH09,5,CH9-连续金融模型.tex,1167,测量误差模型,R/manual/example_05.R,parse_only_not_executed,,readxl,
-CH09,6,CH9-连续金融模型.tex,1274,基于 Yahoo Finance 日频数据的已实现波动率估计,R/manual/example_06.R,parse_only_not_executed,,,
-CH09,7,CH9-连续金融模型.tex,1445,双频已实现协方差估计量 (TSRV),R/manual/example_07.R,parse_only_not_executed,,,
-CH09,8,CH9-连续金融模型.tex,1558,多元已实现核协方差估计量（RK）,R/manual/example_08.R,parse_only_not_executed,,,
-CH09,9,CH9-连续金融模型.tex,1673,预平均协方差估计量（PAV）,R/manual/example_09.R,parse_only_not_executed,,,
-CH09,10,CH9-连续金融模型.tex,1715,预平均协方差估计量（PAV）,R/manual/example_10.R,parse_only_not_executed,,,
-CH09,11,CH9-连续金融模型.tex,1739,预平均协方差估计量（PAV）,R/manual/example_11.R,parse_only_not_executed,,,补全bvec的右括号；原正文代码无法parse。
+"chapter","body_block","source_chapter","source_line_at_extraction","section","file","network_opt_in","packages_detected","note","status"
+"CH09",1,"CH9-连续金融模型.tex",91,"布朗运动","R/manual/example_01.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",2,"CH9-连续金融模型.tex",728,"案例：基于 Aït–Sahalia 似然展开的扩散模型近似极大似然估计与稳健推断","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","dependency_installation_documented_only"
+"CH09",3,"CH9-连续金融模型.tex",740,"案例：基于 Aït–Sahalia 似然展开的扩散模型近似极大似然估计与稳健推断","R/manual/example_03.R","FIN_ECON_ENABLE_NETWORK=1","MASS;MLEMVD;nloptr;numDeriv;quantmod","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",4,"CH9-连续金融模型.tex",1049,"测量误差模型","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH09",5,"CH9-连续金融模型.tex",1148,"测量误差模型","R/manual/example_05.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",6,"CH9-连续金融模型.tex",1236,"基于 Yahoo Finance 日频数据的已实现波动率估计 \label","R/manual/example_06.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",7,"CH9-连续金融模型.tex",1414,"双频已实现协方差估计量 (TSRV) ","R/manual/example_07.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",8,"CH9-连续金融模型.tex",1509,"多元已实现核协方差估计量（RK）\label","R/manual/example_08.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",9,"CH9-连续金融模型.tex",1605,"预平均协方差估计量（PAV）\label","R/manual/example_09.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",10,"CH9-连续金融模型.tex",1640,"预平均协方差估计量（PAV）\label","R/manual/example_10.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH09",11,"CH9-连续金融模型.tex",1665,"预平均协方差估计量（PAV）\label","R/manual/example_11.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"

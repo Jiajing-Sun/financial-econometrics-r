@@ -1,9 +1,7 @@
-# 正文来源：CH10-收益率曲线.tex，代码块 2；正文第 265 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
-if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'), '1')) stop('此正文案例会联网；确认数据口径后设置 FIN_ECON_ENABLE_NETWORK=1 再手动运行。', call.=FALSE)
+# 正文来源：CH10-收益率曲线.tex，代码块 2；修订稿第 216 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
+if (!identical(Sys.getenv('FIN_ECON_ENABLE_NETWORK'),'1')) stop('此正文示例可能联网；请设置 FIN_ECON_ENABLE_NETWORK=1 后手动运行。')
 suppressPackageStartupMessages({
     library(quantmod)
     library(splines)
@@ -50,7 +48,8 @@ n_basis <- 12
 
 knots_inner <- seq(0.5, t_max - 0.5, length.out = max(0, n_basis - 4))
 
-gfun <- function(tt) bs(tt, degree = 3, knots = knots_inner, Boundary.knots = c(0, t_max), intercept = TRUE)
+gfun <- function(tt) bs(tt, degree = 3, knots = knots_inner, Boundary.knots = c(0, t_max),
+    intercept = TRUE)
 
 p_vec <- sapply(bond_list, function(b) b$p)
 
@@ -90,15 +89,21 @@ G_grid <- gfun(grid)
 
 d_hat <- as.vector(G_grid %*% theta_hat)
 
-d_hat[d_hat <= 1e-10] <- 1e-10
+if (any(!is.finite(d_hat)) || any(d_hat <= 0)) {
+    stop("出现无效贴现因子，请采用正值约束或重新设定基函数。")
+}
 
-y_hat <- -log(d_hat)/pmax(grid, 1e-08)
+g_tau <- -log(d_hat)
 
-g_tau <- grid * y_hat
+f_hat <- c(diff(g_tau)/diff(grid), NA_real_)
 
-f_hat <- c(diff(g_tau)/diff(grid), NA)
+f_hat[length(f_hat)] <- f_hat[length(f_hat) - 1L]
 
-f_hat[length(f_hat)] <- f_hat[length(f_hat) - 1]
+y_hat <- rep(NA_real_, length(grid))
+
+y_hat[grid > 0] <- g_tau[grid > 0]/grid[grid > 0]
+
+y_hat[1] <- f_hat[1]
 
 p_fitted <- numeric(length(bond_list))
 
@@ -108,7 +113,8 @@ for (i in seq_along(bond_list)) {
     p_fitted[i] <- sum(bi$cf * d_i)
 }
 
-fit_tab <- data.frame(tau = taus, p_target = p_vec, p_fitted = p_fitted, abs_err = p_fitted - p_vec)
+fit_tab <- data.frame(tau = taus, p_target = p_vec, p_fitted = p_fitted, price_error = p_fitted -
+    p_vec)
 
 cat("=== FRED par-yield 构造息票债；基函数平滑贴现曲线 ===\n")
 
@@ -124,9 +130,8 @@ abline(h = 1, v = 0, col = "grey80", lty = 3)
 
 points(0, 1, pch = 19, col = "steelblue")
 
-plot(grid, y_hat * 100, type = "l", lwd = 2, xlab = "t (years)", ylab = "y(t) [% p.a., cont.]", main = "连续复利收益率 y(t)")
-
-points(taus, log(1 + y_ann)/taus * taus * 100/taus, pch = 19, col = "grey40")
+plot(grid, y_hat * 100, type = "l", lwd = 2, xlab = "t (years)", ylab = "y(t) [% p.a., cont.]",
+    main = "连续复利收益率 y(t)")
 
 plot(grid, f_hat * 100, type = "l", lwd = 2, xlab = "t (years)", ylab = "f(t) [% p.a.]", main = "瞬时远期 f(t)")
 

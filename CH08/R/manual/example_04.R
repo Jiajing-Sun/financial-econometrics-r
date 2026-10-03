@@ -1,12 +1,10 @@
-# 正文来源：CH8-金融资产定价模型.tex，代码块 4；正文第 790 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH8-金融资产定价模型.tex，代码块 4；修订稿第 794 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 set.seed(123)
 
-prices <- matrix(runif(n_stocks * n_periods, 50, 150), nrow = n_stocks, dimnames = list(paste0("Stock_", 1:n_stocks), 
-    paste0("Period_", 1:n_periods)))
+prices <- matrix(runif(n_stocks * n_periods, 50, 150), nrow = n_stocks, dimnames = list(paste0("Stock_",
+    1:n_stocks), paste0("Period_", 1:n_periods)))
 
 returns <- apply(prices, 1, function(p) c(NA, diff(p)/head(p, -1)))
 
@@ -16,11 +14,15 @@ sorting_period <- 12
 
 holding_period <- 1
 
-sort_cols <- (n_periods - sorting_period + 1):n_periods
+hold_col <- n_periods
 
-hold_col <- n_periods - holding_period + 1
+sort_end <- hold_col - 2L
 
-sorting_returns <- rowSums(returns[, sort_cols, drop = FALSE], na.rm = TRUE)
+sort_cols <- (sort_end - sorting_period + 1L):sort_end
+
+stopifnot(min(sort_cols) >= 2L, max(sort_cols) < hold_col)
+
+sorting_returns <- apply(1 + returns[, sort_cols, drop = FALSE], 1, prod) - 1
 
 k_top <- max(1, round(0.3 * n_stocks))
 

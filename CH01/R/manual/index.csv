@@ -1,91 +1,91 @@
-chapter,body_block,source_chapter,source_line_at_extraction,section,file,status,network_opt_in,packages_detected,note
-CH01,1,CH1-R语言概述.tex,137,简单数学运算,,excluded_console_transcript,,,
-CH01,2,CH1-R语言概述.tex,161,简单数学运算,,excluded_console_transcript,,,
-CH01,3,CH1-R语言概述.tex,201,For 循环,R/manual/example_03.R,parse_only_not_executed,,,
-CH01,4,CH1-R语言概述.tex,211,For 循环,R/manual/example_04.R,parse_only_not_executed,,,
-CH01,5,CH1-R语言概述.tex,237,While 循环,R/manual/example_05.R,parse_only_not_executed,,,
-CH01,6,CH1-R语言概述.tex,262,Repeat 循环,R/manual/example_06.R,parse_only_not_executed,,,
-CH01,7,CH1-R语言概述.tex,269,Repeat 循环,R/manual/example_07.R,parse_only_not_executed,,,
-CH01,8,CH1-R语言概述.tex,302,lapply,R/manual/example_08.R,parse_only_not_executed,,,
-CH01,9,CH1-R语言概述.tex,310,lapply,R/manual/example_09.R,parse_only_not_executed,,,
-CH01,10,CH1-R语言概述.tex,326,lapply,R/manual/example_10.R,parse_only_not_executed,,,
-CH01,11,CH1-R语言概述.tex,336,lapply,R/manual/example_11.R,parse_only_not_executed,,,
-CH01,12,CH1-R语言概述.tex,352,R 中的函数,R/manual/example_12.R,parse_only_not_executed,,,
-CH01,13,CH1-R语言概述.tex,367,R 中的函数,R/manual/example_13.R,parse_only_not_executed,,,
-CH01,14,CH1-R语言概述.tex,433,R 中的函数,R/manual/example_14.R,parse_only_not_executed,,,
-CH01,15,CH1-R语言概述.tex,510,向量,R/manual/example_15.R,parse_only_not_executed,,,
-CH01,16,CH1-R语言概述.tex,524,列表,R/manual/example_16.R,parse_only_not_executed,,,
-CH01,17,CH1-R语言概述.tex,548,数据框,R/manual/example_17.R,parse_only_not_executed,,,
-CH01,18,CH1-R语言概述.tex,563,矩阵,R/manual/example_18.R,parse_only_not_executed,,,
-CH01,19,CH1-R语言概述.tex,582,数组,R/manual/example_19.R,parse_only_not_executed,,,
-CH01,20,CH1-R语言概述.tex,596,因子,R/manual/example_20.R,parse_only_not_executed,,,
-CH01,21,CH1-R语言概述.tex,623,导入数据对象,R/manual/example_21.R,parse_only_not_executed,,,
-CH01,22,CH1-R语言概述.tex,636,导入数据对象,,excluded_mixed_console_output,,,
-CH01,23,CH1-R语言概述.tex,686,导入数据对象,R/manual/example_23.R,parse_only_not_executed,,,
-CH01,24,CH1-R语言概述.tex,699,导入数据对象,R/manual/example_24.R,parse_only_not_executed,,,
-CH01,25,CH1-R语言概述.tex,721,子集提取,R/manual/example_25.R,parse_only_not_executed,,,
-CH01,26,CH1-R语言概述.tex,731,过滤,R/manual/example_26.R,parse_only_not_executed,,,
-CH01,27,CH1-R语言概述.tex,747,汇总,,dependency_installation_documented_only,,,
-CH01,28,CH1-R语言概述.tex,752,汇总,R/manual/example_28.R,parse_only_not_executed,,dplyr,
-CH01,29,CH1-R语言概述.tex,757,汇总,R/manual/example_29.R,parse_only_not_executed,,,
-CH01,30,CH1-R语言概述.tex,779,插补缺失值,R/manual/example_30.R,parse_only_not_executed,,,
-CH01,31,CH1-R语言概述.tex,815,插补缺失值,R/manual/example_31.R,parse_only_not_executed,,VIM,
-CH01,32,CH1-R语言概述.tex,841,导出数据对象,R/manual/example_32.R,parse_only_not_executed,,haven;writexl,
-CH01,33,CH1-R语言概述.tex,854,导出数据对象,R/manual/example_33.R,parse_only_not_executed,,,
-CH01,34,CH1-R语言概述.tex,865,导出数据对象,R/manual/example_34.R,parse_only_not_executed,,,
-CH01,35,CH1-R语言概述.tex,878,基本折线图,R/manual/example_35.R,parse_only_not_executed,,,
-CH01,36,CH1-R语言概述.tex,899,改进折线图,R/manual/example_36.R,parse_only_not_executed,,,
-CH01,37,CH1-R语言概述.tex,917,改进折线图,R/manual/example_37.R,parse_only_not_executed,,,
-CH01,38,CH1-R语言概述.tex,969,R 中的其他图形,R/manual/example_38.R,parse_only_not_executed,,,
-CH01,39,CH1-R语言概述.tex,976,R 中的其他图形,R/manual/example_39.R,parse_only_not_executed,,,
-CH01,40,CH1-R语言概述.tex,983,R 中的其他图形,R/manual/example_40.R,parse_only_not_executed,,,
-CH01,41,CH1-R语言概述.tex,991,R 中的其他图形,R/manual/example_41.R,parse_only_not_executed,,,
-CH01,42,CH1-R语言概述.tex,997,R 中的其他图形,R/manual/example_42.R,parse_only_not_executed,,corrplot,
-CH01,43,CH1-R语言概述.tex,1005,R 中的其他图形,R/manual/example_43.R,parse_only_not_executed,,scatterplot3d,
-CH01,44,CH1-R语言概述.tex,1071,使用内置函数生成随机数,R/manual/example_44.R,parse_only_not_executed,,,
-CH01,45,CH1-R语言概述.tex,1080,使用内置函数生成随机数,R/manual/example_45.R,parse_only_not_executed,,,
-CH01,46,CH1-R语言概述.tex,1088,使用内置函数生成随机数,R/manual/example_46.R,parse_only_not_executed,,,
-CH01,47,CH1-R语言概述.tex,1126,采用分位数转换法生成随机数,R/manual/example_47.R,parse_only_not_executed,,,
-CH01,48,CH1-R语言概述.tex,1246,采用分位数转换法生成随机数,,excluded_mixed_console_output,,,
-CH01,49,CH1-R语言概述.tex,1347,tidyverse,,dependency_installation_documented_only,,,
-CH01,50,CH1-R语言概述.tex,1385,dplyr,R/manual/example_50.R,parse_only_not_executed,,,
-CH01,51,CH1-R语言概述.tex,1428,dplyr,R/manual/example_51.R,parse_only_not_executed,,dplyr,
-CH01,52,CH1-R语言概述.tex,1439,dplyr,R/manual/example_52.R,parse_only_not_executed,,,
-CH01,53,CH1-R语言概述.tex,1460,dplyr,R/manual/example_53.R,parse_only_not_executed,,,
-CH01,54,CH1-R语言概述.tex,1479,dplyr,,excluded_mixed_console_output,,,
-CH01,55,CH1-R语言概述.tex,1546,gather (),R/manual/example_55.R,parse_only_not_executed,,tidyr,
-CH01,56,CH1-R语言概述.tex,1567,gather (),,excluded_console_or_raw_data,,,
-CH01,57,CH1-R语言概述.tex,1595,gather (),R/manual/example_57.R,parse_only_not_executed,,,
-CH01,58,CH1-R语言概述.tex,1619,gather (),R/manual/example_58.R,parse_only_not_executed,,,
-CH01,59,CH1-R语言概述.tex,1631,gather (),,excluded_console_transcript,,,
-CH01,60,CH1-R语言概述.tex,1695,gather (),R/manual/example_60.R,parse_only_not_executed,,,
-CH01,61,CH1-R语言概述.tex,1728,separate(),R/manual/example_61.R,parse_only_not_executed,,,
-CH01,62,CH1-R语言概述.tex,1746,separate(),R/manual/example_62.R,parse_only_not_executed,,tidyr,
-CH01,63,CH1-R语言概述.tex,1764,separate(),,excluded_console_or_raw_data,,,
-CH01,64,CH1-R语言概述.tex,1800,unite (),R/manual/example_64.R,parse_only_not_executed,,,
-CH01,65,CH1-R语言概述.tex,1821,unite (),R/manual/example_65.R,parse_only_not_executed,,tidyr,
-CH01,66,CH1-R语言概述.tex,1845,unite (),,excluded_console_or_raw_data,,,
-CH01,67,CH1-R语言概述.tex,1885,spread (),R/manual/example_67.R,parse_only_not_executed,,,
-CH01,68,CH1-R语言概述.tex,1905,spread (),R/manual/example_68.R,parse_only_not_executed,,,
-CH01,69,CH1-R语言概述.tex,1930,spread (),,excluded_console_transcript,,,
-CH01,70,CH1-R语言概述.tex,1955,nest(),R/manual/example_70.R,parse_only_not_executed,,,
-CH01,71,CH1-R语言概述.tex,1973,nest(),R/manual/example_71.R,parse_only_not_executed,,,
-CH01,72,CH1-R语言概述.tex,1981,nest(),,excluded_console_transcript,,,
-CH01,73,CH1-R语言概述.tex,2028,初始化数据层,R/manual/example_73.R,parse_only_not_executed,,,
-CH01,74,CH1-R语言概述.tex,2037,完善美学层,R/manual/example_74.R,parse_only_not_executed,,,
-CH01,75,CH1-R语言概述.tex,2047,设置几何层,R/manual/example_75.R,parse_only_not_executed,,,
-CH01,76,CH1-R语言概述.tex,2059,设置几何层,R/manual/example_76.R,parse_only_not_executed,,,
-CH01,77,CH1-R语言概述.tex,2079,设置几何层,R/manual/example_77.R,parse_only_not_executed,,,
-CH01,78,CH1-R语言概述.tex,2095,扩展面板层,R/manual/example_78.R,parse_only_not_executed,,,
-CH01,79,CH1-R语言概述.tex,2102,扩展面板层,R/manual/example_79.R,parse_only_not_executed,,,
-CH01,80,CH1-R语言概述.tex,2112,应用统计层,R/manual/example_80.R,parse_only_not_executed,,,
-CH01,81,CH1-R语言概述.tex,2122,调整坐标层,R/manual/example_81.R,parse_only_not_executed,,,
-CH01,82,CH1-R语言概述.tex,2140,调整坐标层,R/manual/example_82.R,parse_only_not_executed,,,
-CH01,83,CH1-R语言概述.tex,2156,定义主题层,R/manual/example_83.R,parse_only_not_executed,,,
-CH01,84,CH1-R语言概述.tex,2187,使用 ggplot2,R/manual/example_84.R,parse_only_not_executed,,ggplot2,
-CH01,85,CH1-R语言概述.tex,2234,保存和提取图表,R/manual/example_85.R,parse_only_not_executed,,,
-CH01,86,CH1-R语言概述.tex,2355,方式 A：使用 WDI,R/manual/example_86.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,WDI;dplyr;ggplot2,
-CH01,87,CH1-R语言概述.tex,2386,方式 B：直接调用世界银行 API（httr2,R/manual/example_87.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,dplyr;ggplot2;httr2;jsonlite;purrr;tibble,
-CH01,88,CH1-R语言概述.tex,2489,其他常用公共数据 API 与 R 包速览,R/manual/example_88.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,fredr,
-CH01,89,CH1-R语言概述.tex,2501,其他常用公共数据 API 与 R 包速览,R/manual/example_89.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,OECD,
-CH01,90,CH1-R语言概述.tex,2513,其他常用公共数据 API 与 R 包速览,R/manual/example_90.R,parse_only_not_executed,FIN_ECON_ENABLE_NETWORK=1,imfr,
+"chapter","body_block","source_chapter","source_line_at_extraction","section","file","network_opt_in","packages_detected","note","status"
+"CH01",1,"CH1-R语言概述.tex",139,"简单数学运算","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",2,"CH1-R语言概述.tex",163,"简单数学运算","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",3,"CH1-R语言概述.tex",203,"For 循环","R/manual/example_03.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",4,"CH1-R语言概述.tex",213,"For 循环","R/manual/example_04.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",5,"CH1-R语言概述.tex",239,"While 循环","R/manual/example_05.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",6,"CH1-R语言概述.tex",264,"Repeat 循环","R/manual/example_06.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",7,"CH1-R语言概述.tex",271,"Repeat 循环","R/manual/example_07.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",8,"CH1-R语言概述.tex",304,"lapply","R/manual/example_08.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",9,"CH1-R语言概述.tex",312,"lapply","R/manual/example_09.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",10,"CH1-R语言概述.tex",328,"lapply","R/manual/example_10.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",11,"CH1-R语言概述.tex",338,"lapply","R/manual/example_11.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",12,"CH1-R语言概述.tex",354,"R 中的函数\label","R/manual/example_12.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",13,"CH1-R语言概述.tex",369,"R 中的函数\label","R/manual/example_13.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",14,"CH1-R语言概述.tex",435,"R 中的函数\label","R/manual/example_14.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",15,"CH1-R语言概述.tex",512,"向量","R/manual/example_15.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",16,"CH1-R语言概述.tex",526,"列表","R/manual/example_16.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",17,"CH1-R语言概述.tex",550,"数据框","R/manual/example_17.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",18,"CH1-R语言概述.tex",565,"矩阵","R/manual/example_18.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",19,"CH1-R语言概述.tex",584,"数组","R/manual/example_19.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",20,"CH1-R语言概述.tex",598,"因子","R/manual/example_20.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",21,"CH1-R语言概述.tex",625,"导入数据对象","R/manual/example_21.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",22,"CH1-R语言概述.tex",638,"导入数据对象","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",23,"CH1-R语言概述.tex",690,"导入数据对象","R/manual/example_23.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",24,"CH1-R语言概述.tex",703,"导入数据对象","R/manual/example_24.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",25,"CH1-R语言概述.tex",725,"子集提取","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",26,"CH1-R语言概述.tex",735,"过滤","R/manual/example_26.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",27,"CH1-R语言概述.tex",751,"汇总","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","dependency_installation_documented_only"
+"CH01",28,"CH1-R语言概述.tex",756,"汇总","R/manual/example_28.R","","dplyr","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",29,"CH1-R语言概述.tex",761,"汇总","R/manual/example_29.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",30,"CH1-R语言概述.tex",785,"插补缺失值","R/manual/example_30.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",31,"CH1-R语言概述.tex",824,"插补缺失值","R/manual/example_31.R","","VIM","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",32,"CH1-R语言概述.tex",851,"导出数据对象","R/manual/example_32.R","","haven;writexl","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",33,"CH1-R语言概述.tex",864,"导出数据对象","R/manual/example_33.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",34,"CH1-R语言概述.tex",875,"导出数据对象","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","dependency_installation_documented_only"
+"CH01",35,"CH1-R语言概述.tex",888,"基本折线图","R/manual/example_35.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",36,"CH1-R语言概述.tex",909,"改进折线图","R/manual/example_36.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",37,"CH1-R语言概述.tex",927,"改进折线图","R/manual/example_37.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",38,"CH1-R语言概述.tex",979,"R 中的其他图形","R/manual/example_38.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",39,"CH1-R语言概述.tex",986,"R 中的其他图形","R/manual/example_39.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",40,"CH1-R语言概述.tex",993,"R 中的其他图形","R/manual/example_40.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",41,"CH1-R语言概述.tex",1001,"R 中的其他图形","R/manual/example_41.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",42,"CH1-R语言概述.tex",1007,"R 中的其他图形","R/manual/example_42.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",43,"CH1-R语言概述.tex",1015,"R 中的其他图形","R/manual/example_43.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",44,"CH1-R语言概述.tex",1087,"使用内置函数生成随机数","R/manual/example_44.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",45,"CH1-R语言概述.tex",1096,"使用内置函数生成随机数","R/manual/example_45.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",46,"CH1-R语言概述.tex",1104,"使用内置函数生成随机数","R/manual/example_46.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",47,"CH1-R语言概述.tex",1142,"采用分位数转换法生成随机数","R/manual/example_47.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",48,"CH1-R语言概述.tex",1219,"采用分位数转换法生成随机数","R/manual/example_48.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",49,"CH1-R语言概述.tex",1318,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","dependency_installation_documented_only"
+"CH01",50,"CH1-R语言概述.tex",1356,"\texttt","R/manual/example_50.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",51,"CH1-R语言概述.tex",1401,"\texttt","R/manual/example_51.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",52,"CH1-R语言概述.tex",1412,"\texttt","R/manual/example_52.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",53,"CH1-R语言概述.tex",1433,"\texttt","R/manual/example_53.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",54,"CH1-R语言概述.tex",1452,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",55,"CH1-R语言概述.tex",1519,"\texttt","R/manual/example_55.R","","tidyr","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",56,"CH1-R语言概述.tex",1540,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",57,"CH1-R语言概述.tex",1568,"\texttt","R/manual/example_57.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",58,"CH1-R语言概述.tex",1592,"\texttt","R/manual/example_58.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",59,"CH1-R语言概述.tex",1604,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",60,"CH1-R语言概述.tex",1668,"\texttt","R/manual/example_60.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",61,"CH1-R语言概述.tex",1701,"\texttt","R/manual/example_61.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",62,"CH1-R语言概述.tex",1719,"\texttt","R/manual/example_62.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",63,"CH1-R语言概述.tex",1737,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",64,"CH1-R语言概述.tex",1773,"\texttt","R/manual/example_64.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",65,"CH1-R语言概述.tex",1794,"\texttt","R/manual/example_65.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",66,"CH1-R语言概述.tex",1818,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",67,"CH1-R语言概述.tex",1858,"\texttt","R/manual/example_67.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",68,"CH1-R语言概述.tex",1878,"\texttt","R/manual/example_68.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",69,"CH1-R语言概述.tex",1903,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",70,"CH1-R语言概述.tex",1928,"\texttt","R/manual/example_70.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",71,"CH1-R语言概述.tex",1946,"\texttt","R/manual/example_71.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",72,"CH1-R语言概述.tex",1954,"\texttt","","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","excluded_console_or_raw_data"
+"CH01",73,"CH1-R语言概述.tex",2001,"初始化数据层","R/manual/example_73.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",74,"CH1-R语言概述.tex",2010,"完善美学层","R/manual/example_74.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",75,"CH1-R语言概述.tex",2020,"设置几何层","R/manual/example_75.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",76,"CH1-R语言概述.tex",2032,"设置几何层","R/manual/example_76.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",77,"CH1-R语言概述.tex",2052,"设置几何层","R/manual/example_77.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",78,"CH1-R语言概述.tex",2068,"扩展面板层","R/manual/example_78.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",79,"CH1-R语言概述.tex",2075,"扩展面板层","R/manual/example_79.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",80,"CH1-R语言概述.tex",2085,"应用统计层","R/manual/example_80.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",81,"CH1-R语言概述.tex",2095,"调整坐标层","R/manual/example_81.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",82,"CH1-R语言概述.tex",2113,"调整坐标层","R/manual/example_82.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",83,"CH1-R语言概述.tex",2129,"定义主题层","R/manual/example_83.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",84,"CH1-R语言概述.tex",2160,"使用 \texttt","R/manual/example_84.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",85,"CH1-R语言概述.tex",2207,"保存和提取图表","R/manual/example_85.R","","","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",86,"CH1-R语言概述.tex",2328,"方式 A：使用 \texttt","R/manual/example_86.R","FIN_ECON_ENABLE_NETWORK=1","WDI;dplyr;ggplot2","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",87,"CH1-R语言概述.tex",2359,"方式 B：直接调用世界银行 API（\texttt","R/manual/example_87.R","FIN_ECON_ENABLE_NETWORK=1","dplyr;ggplot2;httr2;jsonlite;purrr;tibble","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",88,"CH1-R语言概述.tex",2464,"其他常用公共数据 API 与 R 包速览","R/manual/example_88.R","FIN_ECON_ENABLE_NETWORK=1","fredr","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",89,"CH1-R语言概述.tex",2476,"其他常用公共数据 API 与 R 包速览","R/manual/example_89.R","","OECD","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"
+"CH01",90,"CH1-R语言概述.tex",2488,"其他常用公共数据 API 与 R 包速览","R/manual/example_90.R","","imfr","仅正文，未包含章末习题。当前数据或包版本可能影响复现。","parse_only_not_executed"

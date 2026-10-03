@@ -1,8 +1,6 @@
-# 正文来源：CH8-金融资产定价模型.tex，代码块 3；正文第 737 行。
-# 只提取章末习题之前的正文代码；原控制台输出未纳入。
-# 手动示例：可能依赖前序代码、外部文件、额外R包；参见本章README与manual/index.csv。
-# 已移除自动安装、清空工作空间、保存整个工作空间及本机工作目录切换。
-dir.create("results/manual", recursive=TRUE, showWarnings=FALSE)
+# 正文来源：CH8-金融资产定价模型.tex，代码块 3；修订稿第 739 行。
+# 仅提取章末习题之前的正文；不含习题提示或答案。
+# 语法已检查；未宣称全部外部数据与可选分支已执行。
 set.seed(123)
 
 n_stocks <- 100
@@ -24,7 +22,7 @@ smb_values <- numeric(n_periods - 1)
 hml_values <- numeric(n_periods - 1)
 
 for (period in 2:n_periods) {
-    mv <- market_values[, period]
+    mv <- market_values[, period - 1L]
     ord_mv <- order(mv)
     k_half <- floor(length(mv)/2)
     small_ids <- rownames(market_values)[ord_mv[1:k_half]]
@@ -32,7 +30,7 @@ for (period in 2:n_periods) {
     small_ret <- mean(returns[small_ids, period], na.rm = TRUE)
     big_ret <- mean(returns[big_ids, period], na.rm = TRUE)
     smb_values[period - 1] <- small_ret - big_ret
-    bm <- 1/pb_ratios[, period]
+    bm <- 1/pb_ratios[, period - 1L]
     ord_bm <- order(bm, decreasing = TRUE)
     k_top <- max(1, round(0.3 * length(bm)))
     high_ids <- rownames(pb_ratios)[ord_bm[1:k_top]]
