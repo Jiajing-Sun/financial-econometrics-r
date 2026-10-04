@@ -103,9 +103,10 @@ f_grid <- sapply(grid, function(tt) {
 
 d_grid <- discount_from_piecewise_f(grid, tau_knots, f_hat)
 
-d_grid[d_grid <= 1e-12] <- 1e-12
+stopifnot(all(is.finite(d_grid)), all(d_grid > 0))
 
 y_grid <- -log(d_grid)/pmax(grid, 1e-08)
+y_grid[grid == 0] <- f_hat[1]
 
 p_fitted <- sapply(seq_along(bond_list), function(i) {
     bi <- bond_list[[i]]
